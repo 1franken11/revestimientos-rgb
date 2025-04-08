@@ -6,6 +6,34 @@ import { SlideData } from "./SlideData";
 const FirstSection: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
   const [current, setCurrent] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50; // distancia mínima para considerar swipe
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) {
+      // Swipe izquierda
+      setCurrent((prev) => (prev + 1) % SlideData.length);
+    } else if (distance < -minSwipeDistance) {
+      // Swipe derecha
+      setCurrent((prev) => (prev - 1 + SlideData.length) % SlideData.length);
+    }
+
+    // Reset
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,9 +49,18 @@ const FirstSection: React.FC = () => {
   }, []);
   return (
     <section id="sp-page-title" className={styles.firstSection}>
-      <div className={styles.slideshow}>
+      <div
+        className={styles.slideshow}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {" "}
         {SlideData.map((Slide, i) => (
-          <div key={i} className={`${styles.slide} ${i === current ? styles.active : ""}`}>
+          <div
+            key={i}
+            className={`${styles.slide} ${i === current ? styles.active : ""}`}
+          >
             <img src={Slide.src} alt={Slide.alt} />
             <div className={styles.caption}>
               {translations?.SLIDES?.[i]?.caption || Slide.alt}

@@ -48,6 +48,7 @@
 
 .navbarMenu li a:hover {
   color: #8bbaca;
+  cursor: pointer;
 }
 
 .menuToggle {

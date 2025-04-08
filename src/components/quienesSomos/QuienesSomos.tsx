@@ -26,7 +26,7 @@ const QuienesSomos: React.FC = () => {
           <h2>{translations.QuienesSomos.specialty.title}</h2>
           <p>{translations.QuienesSomos.specialty.description}</p>
 
-          <h2>¿POR QUÉ ELEGIRNOS?</h2>
+          <h2>{translations.QuienesSomos.whyChooseUs.title}</h2>
           <div className={styles.listColumns}>
             <ul>
               {translations.QuienesSomos.commitment.description.slice(0, 4).map((item, index) => (

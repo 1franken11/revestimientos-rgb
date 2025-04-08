@@ -33,15 +33,24 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
     window.addEventListener("resize", updateOffsets);
     return () => window.removeEventListener("resize", updateOffsets);
   }, [updateOffsets]);
-
+  useEffect(() => {
+    updateOffsets();
+  }, [currentIndex, updateOffsets]);
+  
   const handleMove = (clientX: number) => {
     if (!containerRef.current) return;
+  
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     let percentage = (x / rect.width) * 100;
+  
+    // Limitar el slider entre el borde izquierdo y derecho de la imagen
     percentage = Math.max(imageOffsets.left, Math.min(100 - imageOffsets.right, percentage));
+  
     setDividerPosition(percentage);
   };
+  
+  
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (e.buttons !== 1) return;
@@ -106,6 +115,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
             alt={currentComparison.alt}
             className="image-after"
             loading="lazy"
+            onLoad={updateOffsets}
           />
         </div>
         <div

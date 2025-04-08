@@ -8,11 +8,19 @@ import {
   OpinionesCarousel,
   ProjectSection
 } from "./components"
-
+import { useEffect } from "react";
+import AOS from  "aos";
+import "aos/dist/aos.css";
 import { LanguageProvider } from "./context/LanguageProvider"
 import "./fullpage.css"
 function App() {
-  
+  useEffect(() => {
+    AOS.init({ 
+      duration: 1000, 
+      once: false, 
+      mirror: true 
+    });
+  }, []);
   
   const opiniones = [
     { id: 1, name: 'María G.', comment: 'Excelente trabajo!', date: '2024-12-10', approved: true },
@@ -31,9 +39,9 @@ function App() {
         <FirstSection/>
         </div>
         {/*<Fondo></Fondo>*/}
-        <QuienesSomos/>
-        <FlooringSections/>
-        <ProjectSection/>
+        <div data-aos="fade-up"><QuienesSomos/></div>
+        <div data-aos="fade-up"><FlooringSections/></div>
+        <div data-aos="fade-up"><ProjectSection/></div>
         <OpinionesCarousel
         opinionsData={opiniones}
         itemsPerSlide={3}

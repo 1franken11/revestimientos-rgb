@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./FlooringSections.css";
 import { FlooringGrid } from "./FlooringGrid";
 import { FlooringModal } from "./FlooringModal";
+import { LanguageContext } from "../../context/LanguageContext";
 
 export function FlooringSections() {
+  const { translations } = useContext(LanguageContext)!;
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [bgImage, setBgImage] = useState<string | null>(null);
   const [fadeOut, setFadeOut] = useState<boolean>(false);
@@ -22,8 +24,8 @@ export function FlooringSections() {
               : "none",
           }}
         />
-        <h2 className="section-title">Explora Nuestras Opciones de Pisos</h2>
-        <FlooringGrid
+          <h2 className="flooring-title">{translations.FlooringSections.title}</h2>
+          <FlooringGrid
           setSelectedFloor={(floorKey, floorBgImage) => {
             setSelectedFloor(floorKey);
             setFixedBgImage(floorBgImage); // Fondo fijo al click
