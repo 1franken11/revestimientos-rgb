@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import "./ProjectsModal.css";
 
 interface ProjectModalProps {
@@ -19,15 +20,33 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({ gallery, onClose }) => {
     setCurrentIndex((prev) => (prev + 1) % gallery.length);
   };
 
-  return (
+  const modalContent = (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
+        <button className="modal-close" onClick={onClose}>
+          ×
+        </button>
 
         {gallery.length > 1 && (
           <>
-            <button className="modal-nav-button modal-prev" onClick={goToPrev}>‹</button>
-            <button className="modal-nav-button modal-next" onClick={goToNext}>›</button>
+            <button
+              className="modal-nav-button modal-prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                goToPrev();
+              }}
+            >
+              ⟨
+            </button>
+            <button
+              className="modal-nav-button modal-next"
+              onClick={(e) => {
+                e.stopPropagation();
+                goToNext();
+              }}
+            >
+              ⟩
+            </button>
           </>
         )}
 
@@ -45,6 +64,11 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({ gallery, onClose }) => {
         )}
       </div>
     </div>
+  );
+
+  return ReactDOM.createPortal(
+    modalContent,
+    document.getElementById("modal-root")!
   );
 };
 

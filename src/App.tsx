@@ -41,7 +41,7 @@ function App() {
         {/*<Fondo></Fondo>*/}
         <div data-aos="fade-up"><QuienesSomos/></div>
         <div data-aos="fade-up"><FlooringSections/></div>
-        <div data-aos="fade-up"><ProjectSection/></div>
+        <div data-aos="fade-right"><ProjectSection/></div>
         <OpinionesCarousel
         opinionsData={opiniones}
         itemsPerSlide={3}

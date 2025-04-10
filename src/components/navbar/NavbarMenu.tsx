@@ -22,7 +22,6 @@ const NavbarMenu: React.FC<NavbarMenuProps> = ({ menuOpen, translations }) => {
   return (
     <ul
       className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}
-      style={{ top: menuOpen ? "70px" : "60px" }}
     >
       {menuItems.map((item) => (
         <li key={item.id}>

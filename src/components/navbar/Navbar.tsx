@@ -36,8 +36,8 @@ const Navbar: React.FC = () => {
         <MenuToggle menuOpen={menuOpen} toggleMenu={toggleMenu} />
         <NavbarMenu menuOpen={menuOpen} translations={translations} />
       </div>
-      <div className={styles.navbarSubtitle}>
-        <p>CORPORACIÓN DE CONSTRUCCIÓN</p>
+      <div className={styles.bannerTitle}>
+        <h3>{translations.Menu.corp}</h3>
       </div>
     </nav>
   );

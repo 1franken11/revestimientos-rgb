@@ -7,6 +7,7 @@ export interface Translations {
     QuienesSomos: string;
     contact: string;
     floors: string;
+    corp: string;
   };
   SLIDES: {
     caption: string;
