@@ -9,47 +9,58 @@ import {
   ProjectSection
 } from "./components"
 import { useEffect } from "react";
-import AOS from  "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import { LanguageProvider } from "./context/LanguageProvider"
 import "./fullpage.css"
+import { EmbeddedReview } from "./components/opinionesSection/types"
+
 function App() {
   useEffect(() => {
-    AOS.init({ 
-      duration: 1000, 
-      once: false, 
-      mirror: true 
+    AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true
     });
   }, []);
-  
-  const opiniones = [
-    { id: 1, name: 'María G.', comment: 'Excelente trabajo!', date: '2024-12-10', approved: true },
-    { id: 2, name: 'Carlos R.', comment: 'Muy profesionales.', date: '2024-12-15', approved: true },
-    { id: 3, name: 'Lucía P.', comment: 'Todo impecable.', date: '2024-12-20', approved: true },
-    { id: 4, name: 'Nico T.', comment: 'Los recomiendo.', date: '2024-12-22', approved: true },
-    { id: 5, name: 'Ana F.', comment: 'Excelente atención.', date: '2024-12-25', approved: true },
-    { id: 6, name: 'Pedro M.', comment: 'Volveré a contratar.', date: '2025-01-05', approved: true },
-    { id: 7, name: 'Pedro M.', comment: 'Volveré a contratar.', date: '2025-01-05', approved: true },
+
+  const reseñasEmbed: EmbeddedReview[] = [
+    {
+      id: 1,
+      iframeSrc: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fgumaporoger%2Fposts%2Fpfbid0CnsTnUqbiEddxwSA571vbmqV4ZcnjAwx4ZYcfDZreXhbjGBuSgtSsZFTP2rMXfB5l&show_text=true&width=500"
+    },
+    {
+      id: 2,
+      iframeSrc: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Farbell.riocolorado.35%2Fposts%2Fpfbid02E67hwNEMc5stmdW3fTPT6AUFmKCKewStyPvHDsa6VNkW9ZPTswP5DiZZZwpDk5Bel&show_text=true&width=500"
+    },
+    {
+      id: 3,
+      iframeSrc: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fgumaporoger%2Fposts%2Fpfbid0CnsTnUqbiEddxwSA571vbmqV4ZcnjAwx4ZYcfDZreXhbjGBuSgtSsZFTP2rMXfB5l&show_text=true&width=500"
+    },
+    {
+      id: 4,
+      iframeSrc: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Farbell.riocolorado.35%2Fposts%2Fpfbid02E67hwNEMc5stmdW3fTPT6AUFmKCKewStyPvHDsa6VNkW9ZPTswP5DiZZZwpDk5Bel&show_text=true&width=500"
+    }
   ];
   return (
     <>
       <LanguageProvider>
         <div className="fullpage">
-        <Navbar/>
-        <FirstSection/>
+          <Navbar />
+          <FirstSection />
         </div>
         {/*<Fondo></Fondo>*/}
-        <div data-aos="fade-up"><QuienesSomos/></div>
-        <div data-aos="fade-up"><FlooringSections/></div>
-        <div data-aos="fade-right"><ProjectSection/></div>
+        <div data-aos="fade-up"><QuienesSomos /></div>
+        <div data-aos="fade-up"><FlooringSections /></div>
+        <div data-aos="fade-right"><ProjectSection /></div>
         <OpinionesCarousel
-        opinionsData={opiniones}
-        itemsPerSlide={3}
-        autoSlideInterval={5000}
-        title="RESEÑAS"
-      />
-        <ContactForm/>
-        <Footer/>
+          reviews={reseñasEmbed}
+          itemsPerSlide={3}
+          title="RESEÑAS"
+        />
+
+        <ContactForm />
+        <Footer />
       </LanguageProvider>
     </>
   )

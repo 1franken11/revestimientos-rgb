@@ -5,4 +5,8 @@ export interface Opinion {
     date: string;
     approved: boolean;
   }
-  
+  // types.ts
+export interface EmbeddedReview {
+  id: number;
+  iframeSrc: string;
+}

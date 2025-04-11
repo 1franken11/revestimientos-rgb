@@ -16,9 +16,36 @@
 
 .opinionesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  grid-template-columns: repeat(1, 1fr); /* Default: 1 columna */
 }
+.fadeIn {
+  animation: fadeIn 2s ease-in-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 600px) {
+  .opinionesGrid {
+    grid-template-columns: repeat(2, 1fr); /* Tabletas: 2 columnas */
+  }
+}
+
+@media (min-width: 1024px) {
+  .opinionesGrid {
+    grid-template-columns: repeat(3, 1fr); /* Escritorio: 3 columnas */
+  }
+}
+
 
 /* Card individual */
 .opinionCard {

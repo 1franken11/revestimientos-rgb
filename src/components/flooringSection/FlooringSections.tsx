@@ -28,7 +28,7 @@ export function FlooringSections() {
           <FlooringGrid
           setSelectedFloor={(floorKey, floorBgImage) => {
             setSelectedFloor(floorKey);
-            setFixedBgImage(floorBgImage); // Fondo fijo al click
+            setFixedBgImage(floorBgImage); 
           }}
           setBgImage={setBgImage}
           setFadeOut={setFadeOut}
@@ -38,7 +38,7 @@ export function FlooringSections() {
             floor={selectedFloor}
             onClose={() => {
               setSelectedFloor(null);
-              setFixedBgImage(null); // Se limpia cuando se cierra el modal
+              setFixedBgImage(null);
             }}
           />
         )}
