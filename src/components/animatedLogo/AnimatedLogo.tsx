@@ -99,7 +99,7 @@ const AnimatedLogo: React.FC<{ width?: string }> = ({ width }) => {
         </svg>
       </div>
       <img
-        src="public\logo.png"
+        src="https://res.cloudinary.com/drwacbtjf/image/upload/v1744594800/logo_jtomdp.png"
         alt="Logo estático"
         className={`${styles.logoPngWrapper} ${
           showPng ? styles.fadeIn : styles.fadeOut
