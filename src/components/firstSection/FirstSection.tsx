@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./FirstSection.module.css";
 import { LanguageContext } from "../../context/LanguageContext";
 import { SlideData } from "./SlideData";
+import SectionWithNavbarOffset from "../sectionWithNavbarOffset/SectionWithNavbarOffset";
 
 const FirstSection: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
@@ -9,6 +10,7 @@ const FirstSection: React.FC = () => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50; // distancia mínima para considerar swipe
+  const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
@@ -19,36 +21,48 @@ const FirstSection: React.FC = () => {
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
+    if (touchStart === null || touchEnd === null) return;
+  
     const distance = touchStart - touchEnd;
+    let newIndex = current;
+  
     if (distance > minSwipeDistance) {
-      // Swipe izquierda
-      setCurrent((prev) => (prev + 1) % SlideData.length);
+      newIndex = (current + 1) % SlideData.length;
+      setCurrent(newIndex);
     } else if (distance < -minSwipeDistance) {
-      // Swipe derecha
-      setCurrent((prev) => (prev - 1 + SlideData.length) % SlideData.length);
+      newIndex = (current - 1 + SlideData.length) % SlideData.length;
+      setCurrent(newIndex);
     }
-
-    // Reset
+  
     setTouchStart(null);
     setTouchEnd(null);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
+  
+    // Reinicia el autoplay de forma segura:
+    if (intervalId) clearInterval(intervalId);
+  
+    const id = window.setInterval(() => {
       setCurrent((prev) => (prev + 1) % SlideData.length);
     }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  
+    setIntervalId(id);
+  };
+  
   useEffect(() => {
-    SlideData.forEach((slide) => {
-      const img = new Image();
-      img.src = slide.src;
-    });
+    const id = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % SlideData.length);
+    }, 5000);
+    setIntervalId(id);
+    return () => clearInterval(id);
   }, []);
+  
+  useEffect(() => {
+    const preloadNext = new Image();
+    const nextIndex = (current + 1) % SlideData.length;
+    preloadNext.src = SlideData[nextIndex].src;
+  }, [current]);
+  
   return (
-    <section id="sp-page-title" className={styles.firstSection}>
+    <SectionWithNavbarOffset id="sp-page-title" className={styles.firstSection}>
       <div
         className={styles.slideshow}
         onTouchStart={onTouchStart}
@@ -69,15 +83,16 @@ const FirstSection: React.FC = () => {
         ))}
         <div className={styles.dots}>
           {SlideData.map((_, i) => (
-            <span
+            <button
               key={i}
+              aria-label={`Go to slide ${i + 1}`}
               className={`${styles.dot} ${i === current ? styles.active : ""}`}
               onClick={() => setCurrent(i)}
             />
           ))}
         </div>
       </div>
-    </section>
+    </SectionWithNavbarOffset>
   );
 };
 

@@ -9,7 +9,6 @@ import { TopBar } from "../topbar";
 const Navbar: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   useEffect(() => {

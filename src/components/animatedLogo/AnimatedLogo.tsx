@@ -4,9 +4,34 @@ import styles from "./AnimatedLogo.module.css";
 
 const AnimatedLogo: React.FC<{ width?: string }> = ({ width }) => {
   const svgRef = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const [showPng, setShowPng] = useState(false);
 
   useEffect(() => {
+    const element = containerRef.current;
+  
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          animateLogo();
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+  
+    if (element) {
+      observer.observe(element);
+    }
+  
+    return () => {
+      if (element) observer.unobserve(element); 
+    };
+  }, [hasAnimated]);
+  
+
+  const animateLogo = () => {
     if (!svgRef.current) return;
 
     const paths = svgRef.current.querySelectorAll<SVGPathElement>("path");
@@ -28,7 +53,7 @@ const AnimatedLogo: React.FC<{ width?: string }> = ({ width }) => {
     });
 
     anime({
-      targets: svgRef.current.querySelectorAll("path"),
+      targets: paths,
       strokeDashoffset: [anime.setDashoffset, 0],
       easing: "easeInOutSine",
       duration: 2000,
@@ -36,24 +61,29 @@ const AnimatedLogo: React.FC<{ width?: string }> = ({ width }) => {
     });
 
     anime({
-      targets: svgRef.current.querySelectorAll("path"),
+      targets: paths,
       fillOpacity: [0, 1],
       easing: "easeInOutQuad",
       duration: 1200,
       delay: anime.stagger(100, { start: 1500 }),
       complete: () => {
-        setTimeout(() => setShowPng(true), 200); // pequeña pausa opcional
+        setTimeout(() => setShowPng(true), 200);
       },
     });
-  }, []);
+  };
 
   return (
-    <div className={styles.logoContainer} style={{ width: width || "100%" }}>
+    <div
+      ref={containerRef}
+      className={styles.logoContainer}
+      style={{ width: width || "100%" }}
+    >
       <div
         className={`${styles.logoSvgWrapper} ${
           showPng ? styles.fadeOut : styles.fadeIn
         }`}
       >
+        {/* SVG */}
         <svg
           ref={svgRef}
           className={styles.logoSvg}
@@ -96,7 +126,7 @@ const AnimatedLogo: React.FC<{ width?: string }> = ({ width }) => {
           <path d="M7605 7107 c-3 -12 -5 -54 -3 -92 3 -62 5 -70 23 -70 16 0 20 7 20 37 0 21 5 39 10 40 6 1 23 -17 39 -41 21 -31 34 -41 50 -39 19 3 21 10 24 84 2 62 -1 84 -12 93 -12 10 -17 9 -25 -8 -6 -11 -10 -30 -8 -42 4 -37 -16 -30 -51 16 -36 50 -59 57 -67 22z" />
           <path d="M9495 7107 c-3 -12 -5 -54 -3 -92 2 -55 6 -70 19 -73 11 -2 19 6 23 22 8 34 19 33 48 -4 21 -27 26 -29 42 -17 16 12 17 16 5 34 -10 18 -10 28 1 62 13 39 12 43 -10 66 -19 20 -33 25 -72 25 -41 0 -48 -3 -53 -23z m85 -37 c9 -16 8 -22 -4 -26 -21 -8 -36 3 -36 27 0 25 26 25 40 -1z" />
           <path d="M9800 7111 c-5 -11 -10 -25 -10 -30 0 -6 -11 -34 -25 -63 -14 -28 -25 -58 -25 -65 0 -21 48 -15 62 7 7 11 20 20 28 20 9 0 23 -9 33 -20 18 -21 52 -27 62 -10 3 5 -3 26 -15 47 -11 21 -29 59 -40 86 -21 51 -51 63 -70 28z" />
-        </svg>
+          </svg>
       </div>
       <img
         src="https://res.cloudinary.com/drwacbtjf/image/upload/v1744594800/logo_jtomdp.png"
