@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
 import styles from "./QuienesSomos.module.css";
+import AnimatedLogo from "../animatedLogo/AnimatedLogo";
 
 const QuienesSomos: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
@@ -9,11 +10,12 @@ const QuienesSomos: React.FC = () => {
     <section id="quienes-somos" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
-          <img
+          {/* <img
             src="https://res.cloudinary.com/drwacbtjf/image/upload/v1742957260/logo_optimized_kyy3hb.png"
             alt="Quienes Somos"
             className={styles.imgResponsive}
-          />
+          /> */}
+          <AnimatedLogo/>
         </div>
         <div className={styles.textContainer}>
           <h2>{translations.QuienesSomos.services.title}</h2>
