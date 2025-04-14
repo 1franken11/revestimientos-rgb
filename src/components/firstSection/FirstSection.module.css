@@ -5,13 +5,14 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-
   overflow: hidden;
-  background-image: url("https://res.cloudinary.com/drwacbtjf/image/upload/v1744648145/ChatGPT_Image_14_abr_2025_01_28_26_p.m._k5aheu.png");
+  background-color: #fff;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-blend-mode: multiply; 
+  padding-top: 150px; /* Altura del navbar */
+  box-sizing: border-box; /* importante para que no se pase de 100vh */
 }
 
 .slideshow {

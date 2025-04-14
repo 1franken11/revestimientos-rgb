@@ -11,10 +11,10 @@ type FlooringModalProps = {
 };
 
 const floorImages: Record<string, string> = {
-  tile: "https://s7d4.scene7.com/is/image/MohawkResidential/63269_941_room_00?scl=2&hei=600&wid=800&align=0,.5&fmt=webp",
-  laminate: "https://www.mannington.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fr69d9lchftro%2F2TvgAY1cgC30UYtO6gwM4s%2F747a6cf5e97760b5aacdb3cfbc7fa051%2FBlog_Post_Ultimate_Guide_to_Laminate_Flooring_Image_.jpg&w=2048&q=75",
-  luxuryVinyl: "https://shawfloors.widen.net/content/d2zw5plafw/jpeg/ProdigyHDRMXLPlus-2039V-02040-GoldenAge-RM-H.jpg?crop=true&position=c&w=1042&h=1042",
-  wood: "https://kenningtonflooring.co.uk/wp-content/uploads//Luxury-Vinyl-Tiles-01.jpg",
+  tile: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643216/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_44592a86_jeumna.jpg",
+  laminate: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643166/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_faf1dc6f_l12fpq.jpg",
+  luxuryVinyl: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744662421/vinyll_samvcc.jpg",
+  wood: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
 };
 
 export const FlooringModal: React.FC<FlooringModalProps> = ({ floor, onClose }) => {
