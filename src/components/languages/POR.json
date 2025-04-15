@@ -89,13 +89,13 @@
   "FlooringSections": {
     "title": "Explore Nossas Opções de Pisos",
     "options": {
-      "luxuryVinyl": "Vinil de Luxo",
+      "Vinyl": "Vinil de Luxo",
       "tile": "Azulejo",
       "laminate": "Laminado",
       "wood": "Madeira"
     },
     "descriptions": {
-      "luxuryVinyl": [
+      "Vinyl": [
         {
           "title": "Durabilidade",
           "description": "Altamente durável, resistente a arranhões, manchas e umidade. Ideal para áreas de alto tráfego."
@@ -216,6 +216,15 @@
         }
       ]
     }
+  },
+  "ProjectSection":{
+    "title": "Projetos"
+  },
+  "Reviews":{
+    "title": "Avaliações"
+  },
+  "Button":{
+    "Close": "Fechar"
   },
   "ContactForm": {
     "title": "Fale Conosco",

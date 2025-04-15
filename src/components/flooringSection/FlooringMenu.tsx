@@ -12,8 +12,8 @@ export function FlooringMenu({ menu, setMenu }: FlooringMenuProps) {
 
   return (
     <div className="menu-flooring">
-      <button className={`btn ${menu === "luxuryVinyl" ? "active" : ""}`} onClick={() => setMenu("luxuryVinyl")}>
-        {translations.FlooringSections.options.luxuryVinyl}
+      <button className={`btn ${menu === "Vinyl" ? "active" : ""}`} onClick={() => setMenu("Vinyl")}>
+        {translations.FlooringSections.options.Vinyl}
       </button>
       <button className={`btn ${menu === "tile" ? "active" : ""}`} onClick={() => setMenu("tile")}>
         {translations.FlooringSections.options.tile}

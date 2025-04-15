@@ -60,20 +60,15 @@ const ContactForm: React.FC = () => {
       alt: "Antes y después",
     },
     {
-      before: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854663/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.13_e9174645_lgkbqk.jpg",
-      after: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854747/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_023dbe16_ylkdxr.jpg",
+      before: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675408/after_cropped_torjpp.jpg",
+      after: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675408/before_cropped_f6ovi7.jpg",
       alt: "Antes y después",
     },
     {
-      before: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854663/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.13_e9174645_lgkbqk.jpg",
-      after: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854747/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_023dbe16_ylkdxr.jpg",
+      before: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854491/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.13_3294c619_mqj5ug.jpg",
+      after: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854491/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.13_183997cd_qypyal.jpg",
       alt: "Antes y después",
-    },
-    {
-      before: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854663/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.13_e9174645_lgkbqk.jpg",
-      after: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854747/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_023dbe16_ylkdxr.jpg",
-      alt: "Antes y después",
-    },
+    }
   ];
   return (
     <div className="contact-container">

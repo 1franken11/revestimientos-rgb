@@ -1,7 +1,8 @@
 // ✅ ProjectsSection.tsx
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ProjectsModal from "./ProjectsModal";
 import "./ProjectsSection.css";
+import { LanguageContext } from "../../context/LanguageContext";
 
 const projects = [
   {
@@ -65,15 +66,74 @@ const projects = [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744663815/banio4_ua07hp.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744663812/banio3_c5gwwl.jpg"
     ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744674993/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.08_a4c2d3b4_wl8w8i.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744674993/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.08_a4c2d3b4_wl8w8i.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744674993/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.05_7840b89b_pfqgzk.jpg"
+    ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.13_bae7abbe_o96oax.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.13_bae7abbe_o96oax.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.17_433f69f2_cdfjd7.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.16_1a211a31_cdeqsp.jpg"
+    ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675070/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.31_9e382741_phtr4q.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675070/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.31_9e382741_phtr4q.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675070/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.31_fb81321e_uxt3mx.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675071/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.32_fc8e0d63_cjcmgl.jpg"
+    ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675109/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_fa2bc361_bdefe4.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675109/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_fa2bc361_bdefe4.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675110/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_fa7f6a53_kjxlrc.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675108/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_c71e2992_oqfmio.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675107/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_126293c1_qy1sla.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675106/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_40f6e649_g5ehxp.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675106/Imagen_de_WhatsApp_2025-04-14_a_las_20.14.25_9e29aa50_uoudnr.jpg"
+    ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643156/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_43204dc8_aahfpf.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676528/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.03_d1982d0b_ocvnxg.jpg"
+    ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676874/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_c0218f62_z3yagr.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676874/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_c0218f62_z3yagr.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676876/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.03_1963b701_zbq2kv.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676871/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_d820ac9c_scogdi.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676870/Imagen_de_WhatsApp_2025-02-06_a_las_18.36.59_df6941a3_plzrgt.jpg"
+    ]
+  },
+  {
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676757/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.01_9315ec07_mki94l.jpg",
+    gallery: [
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676757/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.01_9315ec07_mki94l.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676759/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_0538fda0_oieu17.jpg"
+    ]
   }
 ];
 
 const ProjectsSection = () => {
   const [selectedGallery, setSelectedGallery] = useState<string[]>([]);
+  const { translations } = useContext(LanguageContext)!;
 
   return (
     <section className="projects-section">
-      <h2 className="text-center mb-4">PROYECTOS</h2>
+      <h2 className="text-center mb-4">{translations.ProjectSection.title}</h2>
       <div className="project-gallery">
         {projects.map((project, index) => {
           const isVideo = project.media.endsWith(".mp4");

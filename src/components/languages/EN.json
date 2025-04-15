@@ -107,13 +107,13 @@
   "FlooringSections": {
     "title": "Explore Our Flooring Options",
     "options": {
-      "luxuryVinyl": "Luxury Vinyl",
+      "Vinyl": "Vinyl",
       "tile": "Tile",
       "laminate": "Laminate",
       "wood": "Wood"
     },
     "descriptions": {
-      "luxuryVinyl": [
+      "Vinyl": [
         {"title": "Durability", "description": "Highly durable, resistant to scratches, stains, and moisture. Ideal for high-traffic areas."},
         {"title": "Variety", "description": "A wide range of styles that mimic natural materials like wood, stone, or ceramic. Available in tiles, rolls, or planks."},
         {"title": "Maintenance", "description": "Very easy to maintain. Requires sweeping and mopping. Stain and water-resistant."},
@@ -150,6 +150,15 @@
         {"title": "Aesthetics", "description": "Classic and elegant. Natural wood provides a unique, warm, and sophisticated look that fits many decor styles."}
       ]
     }
+  },
+  "ProjectSection":{
+    "title": "Projects"
+  },
+  "Reviews":{
+    "title": "Reviews"
+  },
+  "Button":{
+    "Close": "Close"
   },
   "ContactForm": {
     "title": "Contact Us",

@@ -56,7 +56,6 @@ function App() {
         <OpinionesCarousel
           reviews={reseñasEmbed}
           itemsPerSlide={3}
-          title="RESEÑAS"
         />
 
         <ContactForm />

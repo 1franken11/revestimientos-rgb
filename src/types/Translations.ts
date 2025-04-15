@@ -26,6 +26,15 @@ export interface Translations {
     before: string;
     after: string;
   };
+  ProjectSection:{
+    title: string;
+  };
+  Reviews:{
+    title: string;
+  };
+  Button:{
+    Close: string;
+  }
   VideoSection: {
     title: string;
     videoTitle: string;
@@ -55,13 +64,13 @@ materials: string[];
   FlooringSections: {
     title: string;
     options: {
-      luxuryVinyl: string;
+      Vinyl: string;
       tile: string;
       laminate: string;
       wood: string;
     };
     descriptions: {
-      luxuryVinyl: { title: string; description: string }[];
+      Vinyl: { title: string; description: string }[];
       tile: { title: string; description: string }[];
       laminate: { title: string; description: string }[];
       wood: { title: string; description: string }[];

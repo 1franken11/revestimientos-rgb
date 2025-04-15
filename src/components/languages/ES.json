@@ -89,13 +89,13 @@
   "FlooringSections": {
     "title": "Explora Nuestras Opciones de Pisos",
     "options": {
-      "luxuryVinyl": "Luxury Vinyl",
+      "Vinyl": "Vinyl",
       "tile": "Tile",
       "laminate": "Laminate",
       "wood": "Wood"
     },
     "descriptions": {
-      "luxuryVinyl": [
+      "Vinyl": [
         {
           "title": "Durabilidad",
           "description": "Alta durabilidad, resistente a los arañazos, manchas y a la humedad. Ideal para áreas con alto tráfico."
@@ -217,6 +217,15 @@
       ]
     }
   },
+    "ProjectSection":{
+      "title": "Proyectos"
+    },
+    "Reviews":{
+      "title": "Reseñas"
+    },
+    "Button":{
+      "Close": "Cerrar"
+    },
   "ContactForm": {
     "title": "Contáctanos",
     "description": "¿Tienes alguna pregunta? Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.",

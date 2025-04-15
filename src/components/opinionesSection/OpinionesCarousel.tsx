@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import styles from "./OpinionesCarousel.module.css";
 import { EmbeddedReview } from "./types";
 import { FacebookIframeCard } from "./FacebookIframeCard";
+import { LanguageContext } from "../../context/LanguageContext";
 
 interface Props {
   reviews: EmbeddedReview[];
@@ -16,8 +17,9 @@ const chunkArray = (array: EmbeddedReview[], size: number): EmbeddedReview[][] =
 const OpinionesCarousel: React.FC<Props> = ({
   reviews,
   itemsPerSlide = 3,
-  title = "¡Clientes felices!"
 }) => {
+  
+  const { translations } = useContext(LanguageContext)!;
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const opinionGroups = chunkArray(reviews, itemsPerSlide);
@@ -30,7 +32,7 @@ const OpinionesCarousel: React.FC<Props> = ({
 
   return (
     <section className={styles.opinionesSection}>
-      <h2>{title}</h2>
+      <h2>{translations.Reviews.title}</h2>
       {opinionGroups.length > 0 ? (
         <div className={styles.carouselContainer}>
           <div className={`${styles.opinionesGrid}`}>
