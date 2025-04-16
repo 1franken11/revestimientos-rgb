@@ -1,94 +1,95 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import styles from "./FirstSection.module.css";
 import { LanguageContext } from "../../context/LanguageContext";
 import { SlideData } from "./SlideData";
 import SectionWithNavbarOffset from "../sectionWithNavbarOffset/SectionWithNavbarOffset";
 
+const getResponsiveImage = (srcSet: any): string => {
+  const width = window.innerWidth;
+  if (width <= 480) return srcSet["9x16"];
+  if (width <= 768) return srcSet["4x5"];
+  if (width <= 1024) return srcSet["3x2"];
+  if (width <= 1440) return srcSet["4x3"];
+  return srcSet["16x9"];
+};
+
 const FirstSection: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
   const [current, setCurrent] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const minSwipeDistance = 50; // distancia mínima para considerar swipe
-  const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
+  const [responsiveSrc, setResponsiveSrc] = useState<string | null>(null);
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.touches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.touches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (touchStart === null || touchEnd === null) return;
-  
-    const distance = touchStart - touchEnd;
-    let newIndex = current;
-  
-    if (distance > minSwipeDistance) {
-      newIndex = (current + 1) % SlideData.length;
-      setCurrent(newIndex);
-    } else if (distance < -minSwipeDistance) {
-      newIndex = (current - 1 + SlideData.length) % SlideData.length;
-      setCurrent(newIndex);
-    }
-  
-    setTouchStart(null);
-    setTouchEnd(null);
-  
-    // Reinicia el autoplay de forma segura:
-    if (intervalId) clearInterval(intervalId);
-  
-    const id = window.setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SlideData.length);
-    }, 5000);
-  
-    setIntervalId(id);
-  };
-  
   useEffect(() => {
-    const id = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SlideData.length);
-    }, 5000);
-    setIntervalId(id);
-    return () => clearInterval(id);
-  }, []);
-  
-  useEffect(() => {
-    const preloadNext = new Image();
-    const nextIndex = (current + 1) % SlideData.length;
-    preloadNext.src = SlideData[nextIndex].src;
+    const updateSrc = () => {
+      const src = getResponsiveImage(SlideData[current].srcSet);
+      setResponsiveSrc(src);
+    };
+
+    updateSrc(); // inicial
+
+    window.addEventListener("resize", updateSrc);
+    return () => window.removeEventListener("resize", updateSrc);
   }, [current]);
+
+  const goToNext = () => {
+    setCurrent((prev) => (prev + 1) % SlideData.length);
+  };
   
+  const goToPrev = () => {
+    setCurrent((prev) => (prev - 1 + SlideData.length) % SlideData.length);
+  };
+  
+  const goToIndex = (i: number) => {
+    setCurrent(i);
+  };
+  useEffect(() => {
+    resetTimer();
+  }, [current]);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resetTimer = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % SlideData.length);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
+
   return (
     <SectionWithNavbarOffset id="sp-page-title" className={styles.firstSection}>
-      <div
-        className={styles.slideshow}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        {" "}
-        {SlideData.map((Slide, i) => (
+      <div className={styles.slideshow}>
+        {SlideData.map((slide, i) => (
           <div
             key={i}
             className={`${styles.slide} ${i === current ? styles.active : ""}`}
           >
-            <img src={Slide.src} alt={Slide.alt} />
+            {i === current && responsiveSrc && (
+              <img src={responsiveSrc} alt={slide.alt} />
+            )}
             <div className={styles.caption}>
-              {translations?.SLIDES?.[i]?.caption || Slide.alt}
+              {translations?.SLIDES?.[i]?.caption || slide.alt}
             </div>
           </div>
         ))}
+        <button className={styles.carouselControlPrev} onClick={goToPrev}>
+          &#10094;
+        </button>
+        <button className={styles.carouselControlNext} onClick={goToNext}>
+          &#10095;
+        </button>
         <div className={styles.dots}>
           {SlideData.map((_, i) => (
             <button
               key={i}
               aria-label={`Go to slide ${i + 1}`}
               className={`${styles.dot} ${i === current ? styles.active : ""}`}
-              onClick={() => setCurrent(i)}
-            />
+              onClick={() => goToIndex(i)}
+              />
           ))}
         </div>
       </div>

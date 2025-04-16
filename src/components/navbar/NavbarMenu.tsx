@@ -30,7 +30,7 @@ const NavbarMenu: React.FC<NavbarMenuProps> = ({ menuOpen, translations }) => {
             to={item.id}
             spy
             smooth
-            offset={-70}
+            offset={-180}
             duration={500}
           >
             {translations.Menu[item.key as keyof typeof translations.Menu]}

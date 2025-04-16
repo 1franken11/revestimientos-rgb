@@ -1,0 +1,10 @@
+.logoPngWrapper {
+    position: static; /* o simplemente eliminá position, top, left y transform */
+    width: 300px;
+    height: auto;
+    transition: opacity 1s ease-in-out;
+    z-index: 2;
+    display: block;
+    margin: 0 auto; /* centra horizontalmente */
+  }
+  

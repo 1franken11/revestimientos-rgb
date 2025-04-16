@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
 import styles from "./QuienesSomos.module.css";
-import AnimatedLogo from "../animatedLogo/AnimatedLogo";
+import LogoOnly from "../logoOnly/LogoOnly";
 
 const QuienesSomos: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
@@ -15,7 +15,7 @@ const QuienesSomos: React.FC = () => {
             alt="Quienes Somos"
             className={styles.imgResponsive}
           /> */}
-          <AnimatedLogo/>
+          <LogoOnly showPng={true} />
         </div>
         <div className={styles.textContainer}>
           <h2>{translations.QuienesSomos.services.title}</h2>
