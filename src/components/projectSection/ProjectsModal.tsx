@@ -5,18 +5,25 @@ import "./ProjectsModal.css";
 interface ProjectModalProps {
   gallery: string[];
   onClose: () => void;
+  onNextGallery: () => void;
+  onPrevGallery: () => void;
 }
 
-const ProjectsModal: React.FC<ProjectModalProps> = ({ gallery, onClose }) => {
+const ProjectsModal: React.FC<ProjectModalProps> = ({
+  gallery,
+  onClose,
+  onNextGallery,
+  onPrevGallery,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentMedia = gallery[currentIndex];
   const isVideo = currentMedia.endsWith(".mp4");
 
-  const goToPrev = () => {
+  const goToPrevMedia = () => {
     setCurrentIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
   };
 
-  const goToNext = () => {
+  const goToNextMedia = () => {
     setCurrentIndex((prev) => (prev + 1) % gallery.length);
   };
 
@@ -27,13 +34,14 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({ gallery, onClose }) => {
           ×
         </button>
 
+        {/* Navegación interna dentro de la misma galería */}
         {gallery.length > 1 && (
           <>
             <button
               className="modal-nav-button modal-prev"
               onClick={(e) => {
                 e.stopPropagation();
-                goToPrev();
+                goToPrevMedia();
               }}
             >
               ⟨
@@ -42,7 +50,7 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({ gallery, onClose }) => {
               className="modal-nav-button modal-next"
               onClick={(e) => {
                 e.stopPropagation();
-                goToNext();
+                goToNextMedia();
               }}
             >
               ⟩
@@ -50,18 +58,43 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({ gallery, onClose }) => {
           </>
         )}
 
-        {isVideo ? (
-          <video
-            src={currentMedia}
-            className="modal-video"
-            controls
-            autoPlay
-            muted
-            loop
-          />
-        ) : (
-          <img src={currentMedia} alt="Proyecto" className="modal-image" />
-        )}
+        <div className="media-wrapper">
+          {isVideo ? (
+            <video
+              src={currentMedia}
+              className="modal-video"
+              controls
+              autoPlay
+              muted
+              loop
+            />
+          ) : (
+            <img src={currentMedia} alt="Proyecto" className="modal-image" />
+          )}
+        </div>
+
+        <div className="gallery-nav-wrapper">
+          <button
+            className="modal-nav-button modal-prev-gallery"
+            onClick={(e) => {
+              e.stopPropagation();
+              onPrevGallery();
+              setCurrentIndex(0);
+            }}
+          >
+            ‹
+          </button>
+          <button
+            className="modal-nav-button modal-next-gallery"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNextGallery();
+              setCurrentIndex(0);
+            }}
+          >
+            ›
+          </button>
+        </div>
       </div>
     </div>
   );

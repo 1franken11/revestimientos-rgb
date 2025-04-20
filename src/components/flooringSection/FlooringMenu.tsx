@@ -15,14 +15,14 @@ export function FlooringMenu({ menu, setMenu }: FlooringMenuProps) {
       <button className={`btn ${menu === "Vinyl" ? "active" : ""}`} onClick={() => setMenu("Vinyl")}>
         {translations.FlooringSections.options.Vinyl}
       </button>
-      <button className={`btn ${menu === "tile" ? "active" : ""}`} onClick={() => setMenu("tile")}>
-        {translations.FlooringSections.options.tile}
+      <button className={`btn ${menu === "Tile" ? "active" : ""}`} onClick={() => setMenu("Tile")}>
+        {translations.FlooringSections.options.Tile}
       </button>
-      <button className={`btn ${menu === "laminate" ? "active" : ""}`} onClick={() => setMenu("laminate")}>
-        {translations.FlooringSections.options.laminate}
+      <button className={`btn ${menu === "Laminate" ? "active" : ""}`} onClick={() => setMenu("Laminate")}>
+        {translations.FlooringSections.options.Laminate}
       </button>
-      <button className={`btn ${menu === "wood" ? "active" : ""}`} onClick={() => setMenu("wood")}>
-        {translations.FlooringSections.options.wood}
+      <button className={`btn ${menu === "Wood" ? "active" : ""}`} onClick={() => setMenu("Wood")}>
+        {translations.FlooringSections.options.Wood}
       </button>
     </div>
   );

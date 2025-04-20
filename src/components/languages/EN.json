@@ -108,9 +108,9 @@
     "title": "Explore Our Flooring Options",
     "options": {
       "Vinyl": "Vinyl",
-      "tile": "Tile",
-      "laminate": "Laminate",
-      "wood": "Wood"
+      "Tile": "Tile",
+      "Laminate": "Laminate",
+      "Wood": "Wood"
     },
     "descriptions": {
       "Vinyl": [
@@ -122,7 +122,7 @@
         {"title": "Resistance", "description": "High wear and moisture resistance. Ideal for busy areas."},
         {"title": "Aesthetics", "description": "Realistic imitations of natural materials with modern finishes. Visually versatile with a variety of designs."}
       ],
-      "tile": [
+      "Tile": [
         {"title": "Durability", "description": "Extremely durable, water-resistant, and wear-resistant. Perfect for high-traffic areas like kitchens, bathrooms, and entryways."},
         {"title": "Variety", "description": "Available in a wide variety of colors, shapes, sizes, and finishes. Porcelain is denser and stronger than ceramic."},
         {"title": "Maintenance", "description": "Requires regular cleaning with mild products. Grout can stain over time and needs maintenance."},
@@ -131,7 +131,7 @@
         {"title": "Resistance", "description": "Very resistant to moisture, scratches, stains, and fading."},
         {"title": "Aesthetics", "description": "Elegant, sophisticated, and available in a wide range of colors, patterns, and textures. Realistic wood or stone imitations."}
       ],
-      "laminate": [
+      "Laminate": [
         {"title": "Durability", "description": "Highly durable and wear-resistant, suitable for high-traffic areas."},
         {"title": "Variety", "description": "Offered in many colors and textures, mimicking wood or stone."},
         {"title": "Maintenance", "description": "Requires gentle cleaning. Avoid excess water."},
@@ -140,7 +140,7 @@
         {"title": "Resistance", "description": "Good resistance to stains and scratches, but not waterproof."},
         {"title": "Aesthetics", "description": "Beautiful, realistic visuals that resemble wood or stone, adaptable to various decors."}
       ],
-      "wood": [
+      "Wood": [
         {"title": "Durability", "description": "Very durable, especially with proper care. Prone to scratches, stains, and moisture damage if not maintained."},
         {"title": "Variety", "description": "Available in hardwoods (oak, walnut, cherry) and softwoods (pine, fir). Engineered wood offers more stability."},
         {"title": "Maintenance", "description": "Requires periodic polishing and sealing. Keep dry to avoid damage."},

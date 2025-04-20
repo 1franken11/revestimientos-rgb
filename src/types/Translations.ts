@@ -65,15 +65,15 @@ materials: string[];
     title: string;
     options: {
       Vinyl: string;
-      tile: string;
-      laminate: string;
-      wood: string;
+      Tile: string;
+      Laminate: string;
+      Wood: string;
     };
     descriptions: {
       Vinyl: { title: string; description: string }[];
-      tile: { title: string; description: string }[];
-      laminate: { title: string; description: string }[];
-      wood: { title: string; description: string }[];
+      Tile: { title: string; description: string }[];
+      Laminate: { title: string; description: string }[];
+      Wood: { title: string; description: string }[];
     };
   };
   ContactForm: {

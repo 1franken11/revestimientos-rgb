@@ -8,7 +8,7 @@ export function Wood() {
   return (
     <div className="flooring-item">
       <div className="flooring-description">
-        {(translations.FlooringSections.descriptions.wood as { title: string; description: string }[]).map(
+        {(translations.FlooringSections.descriptions.Wood as { title: string; description: string }[]).map(
           (item, index) => (
             <div key={index}>
               <h4>{item.title}</h4>

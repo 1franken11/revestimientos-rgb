@@ -8,7 +8,7 @@ export function Laminate() {
   return (
     <div className="flooring-item">
       <div className="flooring-description">
-        {(translations.FlooringSections.descriptions.laminate as { title: string; description: string }[]).map(
+        {(translations.FlooringSections.descriptions.Laminate as { title: string; description: string }[]).map(
           (item, index) => (
             <div key={index}>
               <h4>{item.title}</h4>

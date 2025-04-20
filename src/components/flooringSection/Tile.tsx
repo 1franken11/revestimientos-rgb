@@ -8,7 +8,7 @@ export function Tile() {
   return (
     <div className="flooring-item">
       <div className="flooring-description">
-        {(translations.FlooringSections.descriptions.tile as { title: string; description: string }[]).map(
+        {(translations.FlooringSections.descriptions.Tile as { title: string; description: string }[]).map(
           (item, index) => (
             <div key={index}>
               <h4>{item.title}</h4>

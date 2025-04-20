@@ -12,19 +12,19 @@ type FlooringModalProps = {
 };
 
 const floorImages: Record<string, string> = {
-  tile: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643216/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_44592a86_jeumna.jpg",
-  laminate: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643166/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_faf1dc6f_l12fpq.jpg",
+  Tile: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643216/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_44592a86_jeumna.jpg",
+  Laminate: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643166/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_faf1dc6f_l12fpq.jpg",
   Vinyl: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744662421/vinyll_samvcc.jpg",
-  wood: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
+  Wood: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
 };
 
 export const FlooringModal: React.FC<FlooringModalProps> = ({ floor, onClose }) => {
     const { translations } = useContext(LanguageContext)!;
   const components: { [key: string]: React.ReactNode } = {
-    tile: <Tile />,
-    laminate: <Laminate />,
+    Tile: <Tile />,
+    Laminate: <Laminate />,
     Vinyl: <Vinyl />,
-    wood: <Wood />,
+    Wood: <Wood />,
   };
 
   return (

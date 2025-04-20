@@ -15,9 +15,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible; /* Importante para ver botones fuera del contenido */
+
   }
   
-  .modal-image {
+  .modal-image,
+  .modal-video {
     max-width: 95vw;
     max-height: 95vh;
     width: auto;
@@ -55,12 +58,6 @@
     height: 100%;
     object-fit: cover;
   }
-  .modal-video {
-    max-width: 95vw;
-    max-height: 95vh;
-    border-radius: 10px;
-    object-fit: contain;
-  }
   .modal-nav-button {
     position: absolute;
     top: 50%;
@@ -89,5 +86,57 @@
     right: 15px;
   }
   
+  .modal-nav-button.gallery-nav {
+    position: absolute;
+    bottom: 0px; /* Esto asegura que estén en el pie */
+    transform: translateY(100%); /* Lo empuja hacia abajo del borde */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    z-index: 1100;
+  }
   
+  .modal-prev-gallery {
+    left: 15px;
+  }
+  
+  .modal-next-gallery {
+    right: 15px;
+  }
+  
+  
+  .modal-nav-button.gallery-nav:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .media-wrapper {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+  }
+  .gallery-nav-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    transform: translateY(100%);
+  }
+  
+  .modal-nav-button.modal-prev-gallery,
+  .modal-nav-button.modal-next-gallery {
+    position: static; /* ya no usan absolute */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
   

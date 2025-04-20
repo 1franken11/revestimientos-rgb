@@ -90,9 +90,9 @@
     "title": "Explora Nuestras Opciones de Pisos",
     "options": {
       "Vinyl": "Vinyl",
-      "tile": "Tile",
-      "laminate": "Laminate",
-      "wood": "Wood"
+      "Tile": "Tile",
+      "Laminate": "Laminate",
+      "Wood": "Wood"
     },
     "descriptions": {
       "Vinyl": [
@@ -125,7 +125,7 @@
           "description": "Imitaciones realistas de materiales naturales, con acabados modernos. Estéticamente versátil, disponible en una variedad de diseños."
         }
       ],
-      "tile": [
+      "Tile": [
         {
           "title": "Durabilidad",
           "description": "Extremadamente duradero, resistente al agua, la humedad y el desgaste. Ideal para áreas de alto tráfico como cocinas, baños y entradas."
@@ -155,7 +155,7 @@
           "description": "Elegante, sofisticado y disponible en una amplia gama de colores, patrones y texturas. Imitaciones realistas de madera o piedra."
         }
       ],
-      "laminate": [
+      "Laminate": [
         {
           "title": "Durabilidad",
           "description": "Extremadamente duradero, resistente al agua, la humedad y el desgaste. Ideal para áreas de alto tráfico como cocinas, baños y entradas."
@@ -185,7 +185,7 @@
           "description": "Elegante, sofisticado y disponible en una amplia gama de colores, patrones y texturas. Imitaciones realistas de madera o piedra."
         }
       ],
-      "wood": [
+      "Wood": [
         {
           "title": "Durabilidad",
           "description": "Muy duradero, especialmente si se cuida bien. Susceptible a rayones, manchas y daño por humedad si no se mantiene adecuadamente."

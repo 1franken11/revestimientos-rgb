@@ -42,7 +42,7 @@ const projects = [
     ]
   },
   {
-    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643166/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_faf1dc6f_l12fpq.jpg",
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1745097621/4_ek8c4k.png",
     gallery: [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643166/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_faf1dc6f_l12fpq.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643163/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_d8b9052b_jxynww.jpg",
@@ -75,7 +75,7 @@ const projects = [
     ]
   },
   {
-    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.13_bae7abbe_o96oax.jpg",
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1745094934/Dise%C3%B1o_sin_t%C3%ADtulo_4_vuqym9.png",
     gallery: [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.13_bae7abbe_o96oax.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675027/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.17_433f69f2_cdfjd7.jpg",
@@ -83,7 +83,7 @@ const projects = [
     ]
   },
   {
-    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675070/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.31_9e382741_phtr4q.jpg",
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1745094213/1_f6znxe.png",
     gallery: [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675070/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.31_9e382741_phtr4q.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744675070/Imagen_de_WhatsApp_2025-04-14_a_las_20.04.31_fb81321e_uxt3mx.jpg",
@@ -102,7 +102,7 @@ const projects = [
     ]
   },
   {
-    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1745097993/5_bdtckd.png",
     gallery: [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643156/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_43204dc8_aahfpf.jpg",
@@ -119,17 +119,40 @@ const projects = [
     ]
   },
   {
-    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676757/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.01_9315ec07_mki94l.jpg",
+    media: "https://res.cloudinary.com/drwacbtjf/image/upload/v1745094622/3_ejo920.png",
     gallery: [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676757/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.01_9315ec07_mki94l.jpg",
-      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676759/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_0538fda0_oieu17.jpg"
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676759/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_0538fda0_oieu17.jpg",
+      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643217/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_baf7fdf1_gtdmrr.jpg"
     ]
   }
 ];
 
 const ProjectsSection = () => {
   const [selectedGallery, setSelectedGallery] = useState<string[]>([]);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState<number | null>(null);
   const { translations } = useContext(LanguageContext)!;
+
+  const openGallery = (index: number) => {
+    setSelectedGallery(projects[index].gallery);
+    setCurrentProjectIndex(index);
+  };
+
+  const nextProject = () => {
+    if (currentProjectIndex !== null) {
+      const nextIndex = (currentProjectIndex + 1) % projects.length;
+      setCurrentProjectIndex(nextIndex);
+      setSelectedGallery(projects[nextIndex].gallery);
+    }
+  };
+
+  const prevProject = () => {
+    if (currentProjectIndex !== null) {
+      const prevIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+      setCurrentProjectIndex(prevIndex);
+      setSelectedGallery(projects[prevIndex].gallery);
+    }
+  };
 
   return (
     <section className="projects-section">
@@ -142,7 +165,7 @@ const ProjectsSection = () => {
             <div
               key={index}
               className="project-item"
-              onClick={() => setSelectedGallery(project.gallery)}
+              onClick={() => openGallery(index)}
             >
               {isVideo ? (
                 <video
@@ -168,6 +191,8 @@ const ProjectsSection = () => {
         <ProjectsModal
           gallery={selectedGallery}
           onClose={() => setSelectedGallery([])}
+          onNextGallery={nextProject}
+          onPrevGallery={prevProject}
         />
       )}
     </section>

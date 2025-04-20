@@ -90,9 +90,9 @@
     "title": "Explore Nossas Opções de Pisos",
     "options": {
       "Vinyl": "Vinil de Luxo",
-      "tile": "Azulejo",
-      "laminate": "Laminado",
-      "wood": "Madeira"
+      "Tile": "Azulejo",
+      "Laminate": "Laminado",
+      "Wood": "Madeira"
     },
     "descriptions": {
       "Vinyl": [
@@ -125,7 +125,7 @@
           "description": "Imitações realistas de materiais naturais, com acabamentos modernos. Versátil e disponível em diversos designs."
         }
       ],
-      "tile": [
+      "Tile": [
         {
           "title": "Durabilidade",
           "description": "Extremamente durável, resistente à água, umidade e desgaste. Perfeito para cozinhas, banheiros e entradas."
@@ -155,7 +155,7 @@
           "description": "Elegante e sofisticado, disponível em uma ampla variedade de cores, padrões e texturas. Imitações realistas de madeira ou pedra."
         }
       ],
-      "laminate": [
+      "Laminate": [
         {
           "title": "Durabilidade",
           "description": "Altamente durável e resistente ao desgaste, adequado para áreas de alto tráfego."
@@ -185,7 +185,7 @@
           "description": "Visual bonito e realista, adaptando-se a vários estilos de decoração."
         }
       ],
-      "wood": [
+      "Wood": [
         {
           "title": "Durabilidade",
           "description": "Muito durável, especialmente com a manutenção adequada. Pode riscar, manchar ou ser danificado pela umidade."
