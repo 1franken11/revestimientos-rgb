@@ -62,7 +62,18 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
   }, [currentIndex]);
 
   const current = comparisons[currentIndex];
-
+  useEffect(() => {
+    const preventScroll = (e: TouchEvent) => {
+      if (userInteracting) e.preventDefault();
+    };
+  
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+  
+    return () => {
+      document.removeEventListener("touchmove", preventScroll);
+    };
+  }, [userInteracting]);
+  
   return (
     <div className="comparison-wrapper">
       <div
