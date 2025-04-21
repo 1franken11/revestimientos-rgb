@@ -11,144 +11,82 @@ interface ImageComparisonProps {
   comparisons?: ComparisonItem[];
 }
 
-const ImageComparison: React.FC<ImageComparisonProps> = ({
-  comparisons = [],
-}) => {
-  const optimizeUrl = (url: string) =>
-    url.replace("/upload/", "/upload/f_auto,q_auto/");
+const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const beforeImgRef = useRef<HTMLImageElement>(null);
-  const [dividerPosition, setDividerPosition] = useState(50);
+  const dividerRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const afterWrapperRef = useRef<HTMLDivElement>(null);
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [imageOffsets, setImageOffsets] = useState({ left: 0, right: 0 });
   const [userInteracting, setUserInteracting] = useState(false);
 
-  const updateOffsets = useCallback(() => {
-    if (beforeImgRef.current && containerRef.current) {
-      const imgRect = beforeImgRef.current.getBoundingClientRect();
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const left =
-        ((imgRect.left - containerRect.left) / containerRect.width) * 100;
-      const right =
-        ((containerRect.right - imgRect.right) / containerRect.width) * 100;
-      setImageOffsets({ left, right });
-    }
-  }, []);
+  const optimizeUrl = (url: string) =>
+    url.replace("/upload/", "/upload/f_auto,q_auto/");
 
-  useEffect(() => {
-    window.addEventListener("resize", updateOffsets);
-    return () => window.removeEventListener("resize", updateOffsets);
-  }, [updateOffsets]);
-  useEffect(() => {
-    updateOffsets();
-  }, [currentIndex, updateOffsets]);
-
-  const handleMove = (clientX: number) => {
-    if (!containerRef.current) return;
+  const handleMove = useCallback((clientX: number) => {
+    if (!containerRef.current || !dividerRef.current || !sliderRef.current || !afterWrapperRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     let percentage = (x / rect.width) * 100;
+    percentage = Math.max(0, Math.min(100, percentage));
 
-    // Limitar el slider entre el borde izquierdo y derecho de la imagen
-    percentage = Math.max(
-      imageOffsets.left,
-      Math.min(100 - imageOffsets.right, percentage)
-    );
-
-    setDividerPosition(percentage);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (e.buttons !== 1) return;
-    setUserInteracting(true);
-    handleMove(e.clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setUserInteracting(true);
-    handleMove(e.touches[0].clientX);
-  };
-
-  const handleInteractionEnd = () => {
-    setUserInteracting(false);
-  };
+    dividerRef.current.style.left = `${percentage}%`;
+    sliderRef.current.style.left = `${percentage}%`;
+    afterWrapperRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  }, []);
 
   const nextSlide = useCallback(() => {
     if (!userInteracting) {
       setCurrentIndex((prev) => (prev + 1) % comparisons.length);
-      setDividerPosition(50);
+      setTimeout(() => handleMove(containerRef.current!.offsetWidth / 2), 50);
     }
-  }, [comparisons.length, userInteracting]);
+  }, [comparisons.length, userInteracting, handleMove]);
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 10000);
     return () => clearInterval(interval);
   }, [nextSlide]);
 
-  if (comparisons.length === 0) return <p>No hay imágenes para comparar.</p>;
-
-  const currentComparison = comparisons[currentIndex];
-  const safePosition = Math.max(
-    imageOffsets.left,
-    Math.min(100 - imageOffsets.right, dividerPosition)
-  );
+  const current = comparisons[currentIndex];
 
   return (
     <div className="comparison-wrapper">
       <div
         className="image-comparison-container"
         ref={containerRef}
-        style={{ height: "100%", width: "100%" }}
-        onMouseMove={handleMouseMove}
-        onTouchMove={handleTouchMove}
-        onMouseUp={handleInteractionEnd}
-        onTouchEnd={handleInteractionEnd}
+        onMouseMove={(e) => userInteracting && handleMove(e.clientX)}
+        onTouchMove={(e) => userInteracting && handleMove(e.touches[0].clientX)}
+        onMouseUp={() => setUserInteracting(false)}
+        onTouchEnd={() => setUserInteracting(false)}
       >
         <img
           ref={beforeImgRef}
-          src={optimizeUrl(currentComparison.before)}
-          srcSet={`
-    ${optimizeUrl(currentComparison.before)} 1x,
-    ${optimizeUrl(currentComparison.before).replace(
-      "/upload/",
-      "/upload/dpr_2.0/"
-    )} 2x
-  `}
-          alt={currentComparison.alt}
+          src={optimizeUrl(current.before)}
+          alt={current.alt}
           className="image-before"
           loading="lazy"
-          onLoad={updateOffsets}
-          onContextMenu={(e) => e.preventDefault()}
         />
 
         <div
+          ref={afterWrapperRef}
           className="comparison-after-wrapper"
-          style={{ clipPath: `inset(0 ${100 - safePosition}% 0 0)` }}
+          style={{ clipPath: "inset(0 50% 0 0)" }}
         >
           <img
-            src={optimizeUrl(currentComparison.after)}
-            srcSet={`
-    ${optimizeUrl(currentComparison.after)} 1x,
-    ${optimizeUrl(currentComparison.after).replace(
-      "/upload/",
-      "/upload/dpr_2.0/"
-    )} 2x
-  `}
-            alt={currentComparison.alt}
+            src={optimizeUrl(current.after)}
+            alt={current.alt}
             className="image-after"
             loading="lazy"
-            onLoad={updateOffsets}
-            onContextMenu={(e) => e.preventDefault()}
           />
         </div>
+
+        <div ref={dividerRef} className="comparison-divider" style={{ left: "50%" }} />
         <div
-          className="comparison-divider"
-          style={{ left: `${safePosition}%` }}
-        />
-        <div
+          ref={sliderRef}
           className="comparison-slider"
-          style={{ left: `${safePosition}%` }}
+          style={{ left: "50%" }}
           onMouseDown={(e) => {
             setUserInteracting(true);
             handleMove(e.clientX);
@@ -164,14 +102,13 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({
       </div>
 
       <div className="comparison-dots">
-        {comparisons.map((item, i) => (
+        {comparisons.map((_, i) => (
           <span
             key={i}
             className={`dot ${i === currentIndex ? "active" : ""}`}
-            title={item.alt}
             onClick={() => {
               setCurrentIndex(i);
-              setDividerPosition(50);
+              setTimeout(() => handleMove(containerRef.current!.offsetWidth / 2), 50);
             }}
           />
         ))}
