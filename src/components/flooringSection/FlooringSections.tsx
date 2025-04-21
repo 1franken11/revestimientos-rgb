@@ -35,12 +35,15 @@ export function FlooringSections() {
         />
         {selectedFloor && (
           <FlooringModal
-            floor={selectedFloor}
-            onClose={() => {
-              setSelectedFloor(null);
-              setFixedBgImage(null);
-            }}
-          />
+          floor={selectedFloor}
+          onClose={() => {
+            setSelectedFloor(null);
+            setFixedBgImage(null);
+            // 👇 Hace scroll suave hasta el inicio de la sección de pisos
+            document.getElementById("flooring")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
+        
         )}
       </div>
     </section>

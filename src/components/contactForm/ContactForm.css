@@ -97,6 +97,11 @@
   color: red;
   margin-top: 10px;
 }
+.image-comparison-section img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
 /* Responsivo */
 @media (max-width: 768px) {
@@ -105,7 +110,12 @@
     padding: 20px;
     gap: 20px;
   }
-
+  .image-comparison-section img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  
   .contact-info {
     text-align: center;
   }

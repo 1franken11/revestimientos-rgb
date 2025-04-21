@@ -149,11 +149,24 @@ h3 {
 .dot.active {
   background-color: #333;
 }
+.image-before,
+.image-after {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
 @media (min-width: 1600px) {
   .image-comparison-container {
     aspect-ratio: 21 / 9;
   }
+  .image-before,
+.image-after {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 }
 
 @media (max-width: 768px) {
@@ -165,7 +178,13 @@ h3 {
     width: 48px;
     height: 48px;
   }
-
+  .image-before,
+  .image-after {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  
   .slider-arrow {
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
@@ -188,7 +207,13 @@ h3 {
   .image-comparison-container img {
     object-position: center top;
   }
-
+  .image-before,
+  .image-after {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  
   .dot {
     width: 10px;
     height: 10px;

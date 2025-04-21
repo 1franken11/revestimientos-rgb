@@ -211,6 +211,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;
 }
 
 .modal-text-column {
@@ -280,6 +281,17 @@
     font-size: 1.1rem;
     border-radius: 0 0 10px 10px;
   }
+}
+.download-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #2a7892;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .flooring-bg-overlay {

@@ -18,17 +18,45 @@
     overflow: visible; /* Importante para ver botones fuera del contenido */
 
   }
+  .download-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    z-index: 20;
+    transition: background 0.3s;
+  }
   
-  .modal-image,
-  .modal-video {
+  .download-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .modal-image
+  {
     max-width: 95vw;
     max-height: 95vh;
     width: auto;
     height: auto;
     border-radius: 10px;
     object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
-  
+  .modal-video{
+    max-width: 95vw;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+    pointer-events: auto; /* permite controles */
+  }
   .modal-close {
     position: absolute;
     top: -10px;

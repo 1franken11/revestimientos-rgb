@@ -4,46 +4,46 @@ import { LanguageContext } from "../../context/LanguageContext";
 import { SlideData } from "./SlideData";
 import SectionWithNavbarOffset from "../sectionWithNavbarOffset/SectionWithNavbarOffset";
 
-const getResponsiveImage = (srcSet: any): string => {
-  const width = window.innerWidth;
-  if (width <= 480) return srcSet["9x16"];
-  if (width <= 768) return srcSet["4x5"];
-  if (width <= 1024) return srcSet["3x2"];
-  if (width <= 1440) return srcSet["4x3"];
-  return srcSet["16x9"];
+// ✅ Convierte URL a formato optimizado
+const toWebp = (url: string) =>
+  url.replace("/upload/", "/upload/f_auto,q_auto/");
+
+// ✅ Devuelve la imagen ideal según el ancho
+const getResponsiveImage = (srcSet: Record<string, string>, width: number): string => {
+  const key =
+    width <= 480 ? "9x16" :
+    width <= 768 ? "4x5" :
+    width <= 1024 ? "3x2" :
+    width <= 1440 ? "4x3" :
+    "16x9";
+
+  return toWebp(srcSet[key]);
 };
 
 const FirstSection: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
   const [current, setCurrent] = useState(0);
-  const [responsiveSrc, setResponsiveSrc] = useState<string | null>(null);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
+  // ✅ Escuchar cambios de tamaño de pantalla
   useEffect(() => {
-    const updateSrc = () => {
-      const src = getResponsiveImage(SlideData[current].srcSet);
-      setResponsiveSrc(src);
-    };
-
-    updateSrc(); // inicial
-
-    window.addEventListener("resize", updateSrc);
-    return () => window.removeEventListener("resize", updateSrc);
-  }, [current]);
+    const handleResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const goToNext = () => {
     setCurrent((prev) => (prev + 1) % SlideData.length);
   };
-  
+
   const goToPrev = () => {
     setCurrent((prev) => (prev - 1 + SlideData.length) % SlideData.length);
   };
-  
+
   const goToIndex = (i: number) => {
     setCurrent(i);
   };
-  useEffect(() => {
-    resetTimer();
-  }, [current]);
+
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const resetTimer = () => {
@@ -60,22 +60,39 @@ const FirstSection: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    resetTimer();
+  }, [current]);
+
   return (
     <SectionWithNavbarOffset id="sp-page-title" className={styles.firstSection}>
       <div className={styles.slideshow}>
-        {SlideData.map((slide, i) => (
-          <div
-            key={i}
-            className={`${styles.slide} ${i === current ? styles.active : ""}`}
-          >
-            {i === current && responsiveSrc && (
-              <img src={responsiveSrc} alt={slide.alt} />
-            )}
-            <div className={styles.caption}>
-              {translations?.SLIDES?.[i]?.caption || slide.alt}
+        {SlideData.map((slide, i) => {
+          const isActive = i === current;
+          const optimizedSrc = getResponsiveImage(slide.srcSet, viewportWidth);
+
+          return (
+            <div
+              key={i}
+              className={`${styles.slide} ${isActive ? styles.active : ""}`}
+            >
+              {isActive && (
+                <img
+                  src={optimizedSrc}
+                  srcSet={`
+                    ${optimizedSrc} 1x,
+                    ${optimizedSrc.replace("/upload/", "/upload/dpr_2.0/")} 2x
+                  `}
+                  alt={slide.alt}
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+              )}
+              <div className={styles.caption}>
+                {translations?.SLIDES?.[i]?.caption || slide.alt}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <button className={styles.carouselControlPrev} onClick={goToPrev}>
           &#10094;
         </button>
@@ -89,7 +106,7 @@ const FirstSection: React.FC = () => {
               aria-label={`Go to slide ${i + 1}`}
               className={`${styles.dot} ${i === current ? styles.active : ""}`}
               onClick={() => goToIndex(i)}
-              />
+            />
           ))}
         </div>
       </div>

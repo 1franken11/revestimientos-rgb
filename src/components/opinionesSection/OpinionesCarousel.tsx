@@ -31,7 +31,7 @@ const OpinionesCarousel: React.FC<Props> = ({
     setCurrentSlide((prev) => (prev + 1) % opinionGroups.length);
 
   return (
-    <section className={styles.opinionesSection}>
+    <section id="reviews-section" className={styles.opinionesSection}>
       <h2>{translations.Reviews.title}</h2>
       {opinionGroups.length > 0 ? (
         <div className={styles.carouselContainer}>
