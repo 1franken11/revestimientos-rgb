@@ -13,7 +13,6 @@ interface ImageComparisonProps {
 
 const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const beforeImgRef = useRef<HTMLImageElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const afterWrapperRef = useRef<HTMLDivElement>(null);
@@ -24,30 +23,32 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
   const optimizeUrl = (url: string) =>
     url.replace("/upload/", "/upload/f_auto,q_auto/");
 
+  const moveToPercentage = (percentage: number) => {
+    if (!dividerRef.current || !sliderRef.current || !afterWrapperRef.current) return;
+
+    dividerRef.current.style.left = `${percentage}%`;
+    sliderRef.current.style.left = `${percentage}%`;
+    afterWrapperRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  };
+
   const handleMove = useCallback((clientX: number) => {
-    if (!containerRef.current || !dividerRef.current || !sliderRef.current || !afterWrapperRef.current) return;
+    if (!containerRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     let percentage = (x / rect.width) * 100;
     percentage = Math.max(0, Math.min(100, percentage));
 
-    dividerRef.current.style.left = `${percentage}%`;
-    sliderRef.current.style.left = `${percentage}%`;
-    afterWrapperRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    moveToPercentage(percentage);
   }, []);
 
-  const nextSlide = useCallback(() => {
-    if (!userInteracting) {
-      setCurrentIndex((prev) => (prev + 1) % comparisons.length);
-      setTimeout(() => handleMove(containerRef.current!.offsetWidth / 2), 50);
-    }
-  }, [comparisons.length, userInteracting, handleMove]);
-
+  // Centra al cargar nueva imagen
   useEffect(() => {
-    const interval = setInterval(nextSlide, 10000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
+    // Esperar a que se renderice todo antes de mover
+    requestAnimationFrame(() => {
+      moveToPercentage(50);
+    });
+  }, [currentIndex]);
 
   const current = comparisons[currentIndex];
 
@@ -62,7 +63,6 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
         onTouchEnd={() => setUserInteracting(false)}
       >
         <img
-          ref={beforeImgRef}
           src={optimizeUrl(current.before)}
           alt={current.alt}
           className="image-before"
@@ -106,10 +106,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
           <span
             key={i}
             className={`dot ${i === currentIndex ? "active" : ""}`}
-            onClick={() => {
-              setCurrentIndex(i);
-              setTimeout(() => handleMove(containerRef.current!.offsetWidth / 2), 50);
-            }}
+            onClick={() => setCurrentIndex(i)}
           />
         ))}
       </div>
