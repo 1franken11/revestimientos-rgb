@@ -31,16 +31,27 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ comparisons = [] }) =
     afterWrapperRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
   };
 
+  const rafId = useRef<number | null>(null);
+
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = clientX - rect.left;
-    let percentage = (x / rect.width) * 100;
-    percentage = Math.max(0, Math.min(100, percentage));
-
-    moveToPercentage(percentage);
+  
+    if (rafId.current !== null) {
+      cancelAnimationFrame(rafId.current);
+    }
+  
+    rafId.current = requestAnimationFrame(() => {
+      if (!containerRef.current) return;
+  
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      let percentage = (x / rect.width) * 100;
+      percentage = Math.max(0, Math.min(100, percentage));
+  
+      moveToPercentage(percentage);
+    });
   }, []);
+  
 
   // Centra al cargar nueva imagen
   useEffect(() => {
