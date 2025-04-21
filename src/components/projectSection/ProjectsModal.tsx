@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./ProjectsModal.css";
 import { withWatermark } from "../../utils/cloudinary";
+import { PiArrowSquareRightFill, PiArrowSquareLeftFill } from "react-icons/pi";
 
 interface ProjectModalProps {
   gallery: string[];
@@ -31,21 +32,34 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
   const modalContent = (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
-  
+        <button className="modal-close" onClick={onClose}>
+          ×
+        </button>
+
         {gallery.length > 1 && (
           <>
-            <button className="modal-nav-button modal-prev" onClick={(e) => {
-              e.stopPropagation();
-              goToPrevMedia();
-            }}>⟨</button>
-            <button className="modal-nav-button modal-next" onClick={(e) => {
-              e.stopPropagation();
-              goToNextMedia();
-            }}>⟩</button>
+            <button
+              className="modal-nav-button modal-prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                goToPrevMedia();
+              }}
+            >
+              <PiArrowSquareLeftFill size={40} />
+            </button>
+
+            <button
+              className="modal-nav-button modal-next"
+              onClick={(e) => {
+                e.stopPropagation();
+                goToNextMedia();
+              }}
+            >
+              <PiArrowSquareRightFill size={40} />
+            </button>
           </>
         )}
-  
+
         <div className="media-wrapper">
           {isVideo ? (
             <video
@@ -62,8 +76,14 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
               <img
                 src={currentMedia.replace("/upload/", "/upload/f_auto,q_auto/")}
                 srcSet={`
-                  ${currentMedia.replace("/upload/", "/upload/f_auto,q_auto/")} 1x,
-                  ${currentMedia.replace("/upload/", "/upload/f_auto,q_auto,dpr_2.0/")} 2x
+                  ${currentMedia.replace(
+                    "/upload/",
+                    "/upload/f_auto,q_auto/"
+                  )} 1x,
+                  ${currentMedia.replace(
+                    "/upload/",
+                    "/upload/f_auto,q_auto,dpr_2.0/"
+                  )} 2x
                 `}
                 alt="Proyecto"
                 className="modal-image"
@@ -82,23 +102,32 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
             </>
           )}
         </div>
-  
+
         <div className="gallery-nav-wrapper">
-          <button className="modal-nav-button modal-prev-gallery" onClick={(e) => {
-            e.stopPropagation();
-            onPrevGallery();
-            setCurrentIndex(0);
-          }}>‹</button>
-          <button className="modal-nav-button modal-next-gallery" onClick={(e) => {
-            e.stopPropagation();
-            onNextGallery();
-            setCurrentIndex(0);
-          }}>›</button>
+          <button
+            className="modal-nav-button modal-prev-gallery"
+            onClick={(e) => {
+              e.stopPropagation();
+              onPrevGallery();
+              setCurrentIndex(0);
+            }}
+          >
+            <PiArrowSquareLeftFill size={40} />
+          </button>
+          <button
+            className="modal-nav-button modal-next-gallery"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNextGallery();
+              setCurrentIndex(0);
+            }}
+          >
+            <PiArrowSquareRightFill size={40} />
+          </button>
         </div>
       </div>
     </div>
   );
-  
 
   return ReactDOM.createPortal(
     modalContent,

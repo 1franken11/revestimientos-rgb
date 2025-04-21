@@ -3,6 +3,7 @@ import styles from "./OpinionesCarousel.module.css";
 import { EmbeddedReview } from "./types";
 import { FacebookIframeCard } from "./FacebookIframeCard";
 import { LanguageContext } from "../../context/LanguageContext";
+import { PiArrowSquareRightFill, PiArrowSquareLeftFill  } from "react-icons/pi";
 
 interface Props {
   reviews: EmbeddedReview[];
@@ -45,8 +46,12 @@ const OpinionesCarousel: React.FC<Props> = ({
 
           {opinionGroups.length > 1 && (
             <>
-              <button className={styles.carouselControlPrev} onClick={handlePrev}>❮</button>
-              <button className={styles.carouselControlNext} onClick={handleNext}>❯</button>
+              <button className={styles.carouselControlPrev} onClick={handlePrev}>
+                <PiArrowSquareLeftFill size={40} />
+              </button>
+              <button className={styles.carouselControlNext} onClick={handleNext}>
+                <PiArrowSquareRightFill size={40} />
+              </button>
             </>
           )}
         </div>

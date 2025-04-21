@@ -25,7 +25,6 @@
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     padding: 10px 14px;
-    border-radius: 6px;
     text-decoration: none;
     font-size: 14px;
     z-index: 20;
@@ -63,7 +62,6 @@
     right: -10px;
     background: white;
     border: none;
-    border-radius: 50%;
     width: 32px;
     height: 32px;
     cursor: pointer;
@@ -93,10 +91,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     border: none;
     border-radius: 0%;
-    width: 50px;
-    height: 50px;
     color: #fff;
-    font-size: 1.5rem;
     cursor: pointer;
     z-index: 10;
   }
@@ -152,19 +147,14 @@
     right: 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 15px;
     transform: translateY(100%);
   }
   
   .modal-nav-button.modal-prev-gallery,
   .modal-nav-button.modal-next-gallery {
-    position: static; /* ya no usan absolute */
-    width: 40px;
-    height: 40px;
+    position: static;
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
-    font-size: 1.5rem;
-    border-radius: 4px;
     cursor: pointer;
   }
   

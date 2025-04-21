@@ -28,10 +28,9 @@ const projects = [
   },
   {
     media:
-      "https://res.cloudinary.com/drwacbtjf/video/upload/v1743193679/Video_de_WhatsApp_2025-03-28_a_las_15.29.33_b3bb240e_ydjsma.mp4",
+      "https://res.cloudinary.com/drwacbtjf/video/upload/v1745276664/pr2_ssmtbp.mp4",
     gallery: [
-      "https://res.cloudinary.com/drwacbtjf/video/upload/v1743193679/Video_de_WhatsApp_2025-03-28_a_las_15.29.33_b3bb240e_ydjsma.mp4",
-      "https://res.cloudinary.com/drwacbtjf/video/upload/v1743193678/Video_de_WhatsApp_2025-03-28_a_las_15.29.00_8eb9916b_yae7sv.mp4",
+      "https://res.cloudinary.com/drwacbtjf/video/upload/v1745276664/pr2_ssmtbp.mp4",
     ],
   },
   {

@@ -159,6 +159,21 @@
   z-index: 1000;
 }
 
+.modal-nav-button {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  padding: 0 !important;
+  margin: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
 
 
 .modal-card {
@@ -230,6 +245,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  color: black;
 }
 
 @media (max-width: 768px) {
@@ -280,6 +296,7 @@
     padding: 12px;
     font-size: 1.1rem;
     border-radius: 0 0 10px 10px;
+    color: black;
   }
 }
 .download-btn {
@@ -288,7 +305,6 @@
   background: #2a7892;
   color: white;
   padding: 8px 12px;
-  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.9rem;

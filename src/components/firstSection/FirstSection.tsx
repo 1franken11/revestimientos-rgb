@@ -3,6 +3,7 @@ import styles from "./FirstSection.module.css";
 import { LanguageContext } from "../../context/LanguageContext";
 import { SlideData } from "./SlideData";
 import SectionWithNavbarOffset from "../sectionWithNavbarOffset/SectionWithNavbarOffset";
+import { PiArrowSquareRightFill, PiArrowSquareLeftFill  } from "react-icons/pi";
 
 // ✅ Convierte URL a formato optimizado
 const toWebp = (url: string) =>
@@ -94,10 +95,10 @@ const FirstSection: React.FC = () => {
           );
         })}
         <button className={styles.carouselControlPrev} onClick={goToPrev}>
-          &#10094;
+        <PiArrowSquareLeftFill size={60} />
         </button>
         <button className={styles.carouselControlNext} onClick={goToNext}>
-          &#10095;
+        <PiArrowSquareRightFill size={60} />
         </button>
         <div className={styles.dots}>
           {SlideData.map((_, i) => (

@@ -74,11 +74,9 @@
   flex: 1;
   list-style: none;
   padding-left: 0;
-  max-width: 580px;
 }
 
 .listColumns li {
-  margin-bottom: 12px;
   font-size: 1rem;
   color: #444;
   position: relative;
@@ -94,12 +92,10 @@
 }
 
 .textContainer ul {
-  margin-top: 15px;
   padding-left: 0;
 }
 
 .textContainer ul li {
-  margin-bottom: 10px;
   font-size: 1rem;
   color: #444;
   list-style-position: inside;
@@ -119,6 +115,8 @@
   .listColumns {
     flex-direction: column;
     align-items: center;
+    gap: 0px;
+
   }
 
   .imgResponsive {
