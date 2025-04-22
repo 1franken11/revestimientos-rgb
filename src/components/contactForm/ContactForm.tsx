@@ -39,10 +39,10 @@ const ContactForm: React.FC = () => {
           notes: formData.message,
           contact_type: formData.contactType,
           rating: formData.rating,
-          to_email: import.meta.env.VITE_TO_EMAIL,
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
+
       .then((response) => {
         console.log("Correo enviado con éxito:", response.status, response.text);
         setStatusMessage(translations.ContactForm.successMessage);
@@ -89,7 +89,7 @@ const ContactForm: React.FC = () => {
           <hr /><hr />
         </div>
         <div className="image-comparison-section">
-        <ImageComparison comparisons={comparisons} />
+          <ImageComparison comparisons={comparisons} />
         </div>
       </div>
 
