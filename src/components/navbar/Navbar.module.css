@@ -6,9 +6,18 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  border-bottom: 0px solid #ffffff;
   overflow: visible !important;
+  transition: transform 0.3s ease-in-out;
 }
+/* Animación para ocultar/mostrar navbar */
+.show {
+  transform: translateY(0);
+}
+
+.hide {
+  transform: translateY(-100%);
+}
+
 
 .navbarContainer {
   display: flex;

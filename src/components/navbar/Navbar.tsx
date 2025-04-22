@@ -9,6 +9,9 @@ import { TopBar } from "../topbar";
 const Navbar: React.FC = () => {
   const { translations } = useContext(LanguageContext)!;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   useEffect(() => {
@@ -25,8 +28,29 @@ const Navbar: React.FC = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const threshold = 50;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (Math.abs(currentScrollY - lastScrollY) < threshold) return;
+
+      if (currentScrollY > lastScrollY) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${showNavbar ? styles.show : styles.hide}`}>
       <TopBar />
       <div className={styles.navbarContainer}>
         <div className={styles.navbarLogo}>
