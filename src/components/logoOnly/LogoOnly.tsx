@@ -8,7 +8,7 @@ interface LogoOnlyProps {
 const LogoOnly: React.FC<LogoOnlyProps> = ({ showPng }) => {
   return (
     <img
-      src="https://res.cloudinary.com/drwacbtjf/image/upload/v1744594800/logo_jtomdp.png"
+      src="https://res.cloudinary.com/drwacbtjf/image/upload/v1745328531/logo_LE_c63hwt.jpg"
       alt="Logo estático"
       className={`${styles.logoPngWrapper} ${
         showPng ? styles.fadeIn : styles.fadeOut
