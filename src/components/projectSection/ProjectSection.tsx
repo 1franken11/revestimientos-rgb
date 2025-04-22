@@ -1,4 +1,3 @@
-// ✅ ProjectsSection.tsx
 import { useState, useContext } from "react";
 import ProjectsModal from "./ProjectsModal";
 import "./ProjectsSection.css";
@@ -123,16 +122,6 @@ const projects = [
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643154/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_737de658_ioa8xa.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744643156/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_43204dc8_aahfpf.jpg",
       "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676528/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.03_d1982d0b_ocvnxg.jpg",
-    ],
-  },
-  {
-    media:
-      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676874/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_c0218f62_z3yagr.jpg",
-    gallery: [
-      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676874/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.02_c0218f62_z3yagr.jpg",
-      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676876/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.03_1963b701_zbq2kv.jpg",
-      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676871/Imagen_de_WhatsApp_2025-02-06_a_las_18.37.00_d820ac9c_scogdi.jpg",
-      "https://res.cloudinary.com/drwacbtjf/image/upload/v1744676870/Imagen_de_WhatsApp_2025-02-06_a_las_18.36.59_df6941a3_plzrgt.jpg",
     ],
   },
   {

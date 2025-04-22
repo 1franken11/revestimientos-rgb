@@ -26,7 +26,6 @@ const FirstSection: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  // ✅ Escuchar cambios de tamaño de pantalla
   useEffect(() => {
     const handleResize = () => setViewportWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);

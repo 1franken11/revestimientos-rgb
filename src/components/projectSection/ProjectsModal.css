@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible; /* Importante para ver botones fuera del contenido */
+    overflow: visible; 
 
   }
   .download-btn {
@@ -54,7 +54,7 @@
     height: auto;
     border-radius: 10px;
     object-fit: contain;
-    pointer-events: auto; /* permite controles */
+    pointer-events: auto; 
   }
   .modal-close {
     position: absolute;

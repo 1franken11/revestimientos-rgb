@@ -10,11 +10,6 @@ const QuienesSomos: React.FC = () => {
     <section id="quienes-somos" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
-          {/* <img
-            src="https://res.cloudinary.com/drwacbtjf/image/upload/v1742957260/logo_optimized_kyy3hb.png"
-            alt="Quienes Somos"
-            className={styles.imgResponsive}
-          /> */}
           <LogoOnly showPng={true} />
         </div>
         <div className={styles.textContainer}>
@@ -32,15 +27,16 @@ const QuienesSomos: React.FC = () => {
           <div className={styles.listColumns}>
             <ul>
               {translations.QuienesSomos.commitment.description.slice(0, 4).map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index}><span>{item}</span></li>
               ))}
             </ul>
             <ul>
               {translations.QuienesSomos.commitment.description.slice(4).map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index}><span>{item}</span></li>
               ))}
             </ul>
           </div>
+
         </div>
       </div>
     </section>

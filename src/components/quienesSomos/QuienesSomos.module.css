@@ -35,17 +35,9 @@
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-  text-align: center;
+  text-align: justify;
 }
 
-.textContainer h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  color: rgba(42, 120, 146, 0.7);
-  border-bottom: 2px solid #007a99;
-  display: inline-block;
-  padding-bottom: 5px;
-}
 
 .textContainer h3 {
   margin-top: 30px;
@@ -67,29 +59,38 @@
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 20px;
-  justify-content: center;
 }
 
 .listColumns ul {
   flex: 1;
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .listColumns li {
-  font-size: 1rem;
-  color: #444;
-  position: relative;
-  padding-left: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
 .listColumns li::before {
   content: "✔";
-  position: absolute;
-  left: 0;
   color: #28a745;
   font-weight: bold;
+  margin-top: 3px;
+  flex-shrink: 0;
 }
+
+.listColumns li > span {
+  text-align: justify;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #555;
+  display: block;
+}
+
 
 .textContainer ul {
   padding-left: 0;
@@ -99,6 +100,7 @@
   font-size: 1rem;
   color: #444;
   list-style-position: inside;
+  text-align: justify; 
 }
 
 .textContainer ul li::before {

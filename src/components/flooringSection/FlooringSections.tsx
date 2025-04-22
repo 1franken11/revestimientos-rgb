@@ -39,7 +39,6 @@ export function FlooringSections() {
           onClose={() => {
             setSelectedFloor(null);
             setFixedBgImage(null);
-            // 👇 Hace scroll suave hasta el inicio de la sección de pisos
             document.getElementById("flooring")?.scrollIntoView({ behavior: "smooth" });
           }}
         />

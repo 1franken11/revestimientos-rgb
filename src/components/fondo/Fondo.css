@@ -11,7 +11,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    aspect-ratio: 16/5; /* o ajustá según la relación que desees */
+    aspect-ratio: 16/5;
 }
 
 .fondo-img-1 {
