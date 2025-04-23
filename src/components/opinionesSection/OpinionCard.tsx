@@ -6,7 +6,6 @@ interface Props {
   opinion: Opinion;
   onClick: () => void;
 }
-//este archivo es para hardcodear ejemplos.
 export const OpinionCard: React.FC<Props> = ({ opinion, onClick }) => (
   <div className={styles.opinionCard} onClick={onClick} style={{ cursor: "pointer" }}>
     <p>"{opinion.comment}"</p>

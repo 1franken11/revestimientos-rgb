@@ -1,4 +1,3 @@
-// components/FacebookIframeCard.tsx
 import React from "react";
 
 interface Props {

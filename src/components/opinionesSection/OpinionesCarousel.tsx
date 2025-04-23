@@ -32,8 +32,9 @@ const OpinionesCarousel: React.FC<Props> = ({
     setCurrentSlide((prev) => (prev + 1) % opinionGroups.length);
 
   return (
+    <>
     <section id="reviews-section" className={styles.opinionesSection}>
-      <h2>{translations.Reviews.title}</h2>
+    <h2>{translations.Reviews.title}</h2>
       {opinionGroups.length > 0 ? (
         <div className={styles.carouselContainer}>
           <div className={`${styles.opinionesGrid}`}>
@@ -59,6 +60,7 @@ const OpinionesCarousel: React.FC<Props> = ({
         <p className="text-center">Aún no hay comentarios.</p>
       )}
     </section>
+    </>
   );
 };
 

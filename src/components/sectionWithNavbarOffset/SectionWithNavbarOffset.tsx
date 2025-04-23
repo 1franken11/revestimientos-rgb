@@ -17,8 +17,8 @@ const SectionWithNavbarOffset: React.FC<Props> = ({ id, className, children }) =
       }
     };
 
-    updateMargin(); // Ajuste inicial
-    window.addEventListener("resize", updateMargin); // Recalcular si cambia el tamaño
+    updateMargin(); 
+    window.addEventListener("resize", updateMargin);
 
     return () => window.removeEventListener("resize", updateMargin);
   }, []);

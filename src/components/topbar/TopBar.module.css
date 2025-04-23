@@ -1,4 +1,3 @@
-/* === TopBar base === */
 .topbar {
     background-color: #000000;
     color: #feffff;
@@ -6,7 +5,6 @@
     padding: 5px 10px;
   }
   
-  /* === Estilo centrado (por defecto en mobile) === */
   .centered {
     color: #cde4e7;
     text-align: center;
@@ -18,7 +16,6 @@
     font-size: 0.95rem;
   }
   
-  /* === Enlaces del TopBar === */
   .link {
     color: #ffffff;
     text-decoration: none;
@@ -28,13 +25,11 @@
     font-weight: 400;
   }
   
-  /* === Íconos del TopBar === */
   .icon {
     width: 14px;
     height: 14px;
   }
   
-  /* === Contenedor para TopBar extendido === */
   .container {
     display: flex;
     flex-direction: column;
@@ -45,7 +40,6 @@
     margin: 0 auto;
   }
   
-  /* === Grupos izquierdo y derecho === */
   .leftGroup,
   .rightGroup {
     display: flex;
@@ -54,7 +48,6 @@
     gap: 20px;
   }
   
-  /* === Enlaces de los grupos === */
   .groupLink {
     color: white;
     text-decoration: none;
@@ -64,7 +57,6 @@
     gap: 4px;
   }
   
-  /* === Texto adicional en grupo derecho === */
   .groupText {
     display: flex;
     align-items: center;
@@ -72,13 +64,11 @@
     font-size: 1rem;
   }
   
-  /* === Íconos grandes (dentro del contenedor extendido) === */
   .containerIcon {
     width: 14px;
     height: 14px;
   }
   
-  /* === Desktop override (768px en adelante) === */
   @media (min-width: 768px) {
     .container {
       flex-direction: row;
