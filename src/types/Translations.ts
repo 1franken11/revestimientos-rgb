@@ -90,5 +90,7 @@ materials: string[];
     sendButton: string;
     successMessage: string;
     errorMessage: string;
+    cel: string;
+    celPlaceholder:string;
   };
 }

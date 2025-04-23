@@ -239,6 +239,8 @@
     "messagePlaceholder": "Sua mensagem",
     "sendButton": "Enviar",
     "successMessage": "E-mail enviado com sucesso!",
-    "errorMessage": "Ocorreu um erro ao enviar o e-mail. Por favor, tente novamente."
+    "errorMessage": "Ocorreu um erro ao enviar o e-mail. Por favor, tente novamente.",
+    "cel": "Numero de celular",
+    "celPlaceholder": "Opcional"
   }
 }

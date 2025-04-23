@@ -11,9 +11,9 @@ const ContactForm: React.FC = () => {
     name: "",
     surname: "",
     email: "",
+    cel: "",
     message: "",
-    contactType: "budget",
-    rating: 0,
+    contactType: "budget"
   });
 
   const [statusMessage, setStatusMessage] = useState("");
@@ -22,50 +22,49 @@ const ContactForm: React.FC = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleRatingClick = (star: number) => {
-    setFormData({ ...formData, rating: star });
-  };
-
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    // Armá los datos comunes
+
     const emailData = {
       name: `${formData.name} ${formData.surname}`,
       email: formData.email,
+      cel: formData.cel,
       notes: formData.message,
       contact_type: formData.contactType,
-      rating: formData.rating,
-      to_email: import.meta.env.VITE_TO_EMAIL, // Opcional, según tu template
+      to_email: import.meta.env.VITE_TO_EMAIL,
     };
-  
+
     try {
-      // Envío a tu cuenta (programador)
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID_1,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID_1,
         emailData,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY_1
       );
-  
-      // Envío a cuenta del cliente
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID_2,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_2,
-        emailData,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY_2
-      );
-  
+
+      // SOLO en producción intentá enviar el segundo mail
+      if (import.meta.env.VITE_EMAILJS_SERVICE_ID_2 &&
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_2 &&
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY_2) {
+        await emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID_2,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID_2,
+          emailData,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY_2
+        );
+      }
+
       setStatusMessage(translations.ContactForm.successMessage);
-      setFormData({ name: "", surname: "", email: "", message: "", contactType: "budget", rating: 0 });
-      console.log("Correos enviados a ambos destinatarios.");
+      setFormData({ name: "", surname: "", email: "", cel:"", message: "", contactType: "budget" });
+      console.log("Correos enviados.");
     } catch (error) {
       console.log("Error al enviar los correos:", error);
       setStatusMessage(translations.ContactForm.errorMessage);
     }
   };
-  
-  
+
+
+
   const comparisons = [
     {
       before: "https://res.cloudinary.com/drwacbtjf/image/upload/v1742854747/Imagen_de_WhatsApp_2025-02-06_a_las_18.38.14_023dbe16_ylkdxr.jpg",
@@ -111,7 +110,6 @@ const ContactForm: React.FC = () => {
           <label htmlFor="contactType">Motivo del contacto</label>
           <select id="contactType" value={formData.contactType} onChange={handleChange} required>
             <option value="budget">Solicitar cotización</option>
-            <option value="opinion">Opinión sobre la atención</option>
             <option value="other">Otro</option>
           </select>
 
@@ -145,22 +143,14 @@ const ContactForm: React.FC = () => {
             required
           />
 
-          {formData.contactType === "opinion" && (
-            <>
-              <label>Puntuación</label>
-              <div className="star-rating">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    onClick={() => handleRatingClick(star)}
-                    style={{ cursor: "pointer", fontSize: "2rem", color: formData.rating >= star ? "gold" : "lightgray" }}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-            </>
-          )}
+          <label htmlFor="cel">{translations.ContactForm.cel}</label>
+          <input
+            type="tel"
+            id="cel"
+            placeholder={translations.ContactForm.celPlaceholder}
+            value={formData.cel}
+            onChange={handleChange}
+          />
 
           <label htmlFor="message">{translations.ContactForm.message}</label>
           <textarea

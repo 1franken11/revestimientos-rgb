@@ -173,6 +173,8 @@
     "messagePlaceholder": "Your message",
     "sendButton": "Send",
     "successMessage": "Email sent successfully!",
-    "errorMessage": "There was an error sending the email. Please try again."
+    "errorMessage": "There was an error sending the email. Please try again.",
+    "cel": "Cellphone number",
+    "celPlaceholder": "Optional"
   }
 }
