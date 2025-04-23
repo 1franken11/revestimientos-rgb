@@ -26,8 +26,8 @@ const TopBar: React.FC = () => {
       >
         <FaWhatsapp className={styles.icon} /> +1 904-728-9872
       </a>
-      <a className={styles.link} href="mailto:rgbcorporation@gmail.com">
-        <FaEnvelope className={styles.icon} /> rgbcorporation@gmail.com
+      <a className={styles.link} href="mailto:rgbconstructioncorp@gmail.com">
+        <FaEnvelope className={styles.icon} /> rgbconstructioncorp@gmail.com
       </a>
     </div>
   );
