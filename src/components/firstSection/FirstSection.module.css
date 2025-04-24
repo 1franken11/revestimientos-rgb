@@ -28,16 +28,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(1.02);
   z-index: 0;
   pointer-events: none;
 }
 
 .active {
   opacity: 1;
-  z-index: 1;
+  pointer-events: auto;
 }
 
 .slide img {
