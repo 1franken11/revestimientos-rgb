@@ -107,10 +107,10 @@ const ContactForm: React.FC = () => {
 
       <div className="contact-form">
         <form onSubmit={sendEmail}>
-          <label htmlFor="contactType">Motivo del contacto</label>
+          <label htmlFor="contactType">{translations.ContactForm.subject}</label>
           <select id="contactType" value={formData.contactType} onChange={handleChange} required>
-            <option value="budget">Solicitar cotización</option>
-            <option value="other">Otro</option>
+            <option value="budget">{translations.ContactForm.ask}</option>
+            <option value="other">{translations.ContactForm.another}</option>
           </select>
 
           <label htmlFor="name">{translations.ContactForm.name}</label>
