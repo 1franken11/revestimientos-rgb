@@ -18,25 +18,37 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
   onPrevGallery,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false); // <--- nuevo estado
   const currentMedia = gallery[currentIndex];
   const isVideo = currentMedia.endsWith(".mp4");
 
   const goToPrevMedia = () => {
     setCurrentIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
+    setIsLoaded(false); // <--- reset al cargar nueva imagen/video
   };
 
   const goToNextMedia = () => {
     setCurrentIndex((prev) => (prev + 1) % gallery.length);
+    setIsLoaded(false); // <--- reset al cargar nueva imagen/video
   };
+
+  // Cuando cambiás de galería (otro proyecto), también reset
+  React.useEffect(() => {
+    setIsLoaded(false);
+  }, [gallery]);
 
   const modalContent = (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>
-          ×
-        </button>
+        {/* Botón de cerrar (muestra solo cuando está cargado) */}
+        {isLoaded && (
+          <button className="modal-close" onClick={onClose}>
+            ×
+          </button>
+        )}
 
-        {gallery.length > 1 && (
+        {/* Botones de navegación dentro de la galería */}
+        {gallery.length > 1 && isLoaded && (
           <>
             <button
               className="modal-nav-button modal-prev"
@@ -47,7 +59,6 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
             >
               <PiArrowSquareLeftFill size={40} />
             </button>
-
             <button
               className="modal-nav-button modal-next"
               onClick={(e) => {
@@ -69,7 +80,9 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
               autoPlay
               muted
               loop
+              onLoadedData={() => setIsLoaded(true)}
               onContextMenu={(e) => e.preventDefault()}
+              style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.3s" }}
             />
           ) : (
             <>
@@ -88,43 +101,53 @@ const ProjectsModal: React.FC<ProjectModalProps> = ({
                 alt="Proyecto"
                 className="modal-image"
                 loading="lazy"
+                onLoad={() => setIsLoaded(true)}
                 onContextMenu={(e) => e.preventDefault()}
+                style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.3s" }}
               />
-              <a
-                href={withWatermark(currentMedia)}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className="download-btn"
-              >
-                Descargar imagen
-              </a>
+              {/* Botón descargar (solo si está cargada la imagen) */}
+              {isLoaded && (
+                <a
+                  href={withWatermark(currentMedia)}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="download-btn"
+                >
+                  Descargar imagen
+                </a>
+              )}
             </>
           )}
         </div>
 
-        <div className="gallery-nav-wrapper">
-          <button
-            className="modal-nav-button modal-prev-gallery"
-            onClick={(e) => {
-              e.stopPropagation();
-              onPrevGallery();
-              setCurrentIndex(0);
-            }}
-          >
-            <PiArrowSquareLeftFill size={40} />
-          </button>
-          <button
-            className="modal-nav-button modal-next-gallery"
-            onClick={(e) => {
-              e.stopPropagation();
-              onNextGallery();
-              setCurrentIndex(0);
-            }}
-          >
-            <PiArrowSquareRightFill size={40} />
-          </button>
-        </div>
+        {/* Botones para navegar ENTRE galerías (proyectos) */}
+        {isLoaded && (
+          <div className="gallery-nav-wrapper">
+            <button
+              className="modal-nav-button modal-prev-gallery"
+              onClick={(e) => {
+                e.stopPropagation();
+                onPrevGallery();
+                setCurrentIndex(0);
+                setIsLoaded(false); // <--- reset al cargar otra galería
+              }}
+            >
+              <PiArrowSquareLeftFill size={40} />
+            </button>
+            <button
+              className="modal-nav-button modal-next-gallery"
+              onClick={(e) => {
+                e.stopPropagation();
+                onNextGallery();
+                setCurrentIndex(0);
+                setIsLoaded(false); // <--- reset al cargar otra galería
+              }}
+            >
+              <PiArrowSquareRightFill size={40} />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -140,3 +140,13 @@
     text-align: left;
   }
 }
+.menuToggle,
+.menuToggle:focus,
+.menuToggle:active,
+.menuToggle span,
+.menuToggle span:focus,
+.menuToggle span:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent; /* Quita el highlight azul en móviles */
+}

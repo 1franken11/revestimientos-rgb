@@ -123,3 +123,12 @@
     max-width: 100px; 
   }
 }
+.flag-option,
+.flag-option:focus,
+.flag-option:active,
+.flag-option img:focus,
+.flag-option img:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent; /* Elimina resplandor azul en mobile */
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Navbar.module.css";
+import { TfiMenu } from "react-icons/tfi";
 
 interface MenuToggleProps {
   menuOpen: boolean;
@@ -8,17 +9,18 @@ interface MenuToggleProps {
 
 const MenuToggle: React.FC<MenuToggleProps> = ({ menuOpen, toggleMenu }) => {
   return (
-    <div
+    <button
       className={styles.menuToggle}
+      aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
       onClick={(e) => {
         e.stopPropagation();
         toggleMenu();
       }}
+      type="button"
+      tabIndex={0}
     >
-      <span className={menuOpen ? styles.menuToggleActive : ""}></span>
-      <span className={menuOpen ? styles.menuToggleActive : ""}></span>
-      <span className={menuOpen ? styles.menuToggleActive : ""}></span>
-    </div>
+      <TfiMenu size={36} />
+    </button>
   );
 };
 

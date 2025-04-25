@@ -322,3 +322,44 @@
 .flooring-bg-overlay.fade-out {
   opacity: 0;
 }
+/* Elimina outline, box-shadow y highlight azul en todo lo clickeable */
+button,
+button:focus,
+button:active,
+a,
+a:focus,
+a:active,
+.flooring-card,
+.flooring-card:focus,
+.flooring-card:active,
+.close-btn,
+.close-btn:focus,
+.close-btn:active,
+.menu-flooring .btn,
+.menu-flooring .btn:focus,
+.menu-flooring .btn:active
+{
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+/* Elimina contornos/sombras azules en todos los botones y elementos clickeables */
+button,
+button:focus,
+button:active,
+.download-btn,
+.download-btn:focus,
+.download-btn:active,
+.modal-close,
+.modal-close:focus,
+.modal-close:active,
+.modal-nav-button,
+.modal-nav-button:focus,
+.modal-nav-button:active,
+.project-item,
+.project-item:focus,
+.project-item:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}

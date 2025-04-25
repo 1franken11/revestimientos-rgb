@@ -129,3 +129,23 @@
   object-fit: cover;
   border-radius: 8px;
 }
+/* Elimina contornos/sombras azules en todos los botones y elementos clickeables */
+button,
+button:focus,
+button:active,
+.download-btn,
+.download-btn:focus,
+.download-btn:active,
+.modal-close,
+.modal-close:focus,
+.modal-close:active,
+.modal-nav-button,
+.modal-nav-button:focus,
+.modal-nav-button:active,
+.project-item,
+.project-item:focus,
+.project-item:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
