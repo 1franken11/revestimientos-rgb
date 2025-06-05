@@ -23,26 +23,7 @@ function App() {
     });
   }, []);
   const reseñasEmbed: EmbeddedReview[] = [
-    {
-      id: 1,
-      iframeSrc:
-        "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fgumaporoger%2Fposts%2Fpfbid0CnsTnUqbiEddxwSA571vbmqV4ZcnjAwx4ZYcfDZreXhbjGBuSgtSsZFTP2rMXfB5l&show_text=true",
-    },
-    {
-      id: 2,
-      iframeSrc:
-        "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Farbell.riocolorado.35%2Fposts%2Fpfbid02E67hwNEMc5stmdW3fTPT6AUFmKCKewStyPvHDsa6VNkW9ZPTswP5DiZZZwpDk5Bel&show_text=true",
-    },
-    {
-      id: 3,
-      iframeSrc:
-        "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fgumaporoger%2Fposts%2Fpfbid0CnsTnUqbiEddxwSA571vbmqV4ZcnjAwx4ZYcfDZreXhbjGBuSgtSsZFTP2rMXfB5l&show_text=true",
-    },
-    {
-      id: 4,
-      iframeSrc:
-        "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Farbell.riocolorado.35%2Fposts%2Fpfbid02E67hwNEMc5stmdW3fTPT6AUFmKCKewStyPvHDsa6VNkW9ZPTswP5DiZZZwpDk5Bel&show_text=true",
-    },
+    
   ];
   return (
     <>

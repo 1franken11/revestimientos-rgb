@@ -241,6 +241,7 @@
     "successMessage": "¡Email enviado con éxito!",
     "errorMessage": "Hubo un error al enviar el email. Inténtalo nuevamente.",
     "cel": "Numero de celular",
-    "celPlaceholder": "Opcional"
+    "celPlaceholder": "Opcional",
+    "quote": "Solicitar cotización"
   }
 }

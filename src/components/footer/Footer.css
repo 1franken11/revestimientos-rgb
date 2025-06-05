@@ -1,30 +1,51 @@
 .footer {
-    background-color: #000; 
-    color: #fff; 
-    text-align: center; 
-    padding: 30px 0; 
-    font-size: 0.9rem; 
-  }
-  
-  .footer p {
-    margin: 0 auto;
-    max-width: 90%;
+  background-color: #000;
+  color: #fff;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.footer-left a {
+  text-decoration: none;
+}
+
+.instagram,
+.facebook,
+.whatsapp {
+  color: #8bbaca;
+}
+
+.icon:hover {
+  color: #000; 
+}
+
+.footer-copy {
+  margin-left: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
     text-align: center;
-    word-break: break-word; /* Para evitar que se desborde */
+    gap: 10px;
   }
-  .instagram {
-    color: #8bbaca;
+
+  .footer-left,
+  .footer-right {
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  
-  .facebook {
-    color: #8bbaca;
-  }
-  
-  .whatsapp {
-    color: #8bbaca;
-  }
-  
-  .icon:hover {
-    color: #000; /* Cambia el color al pasar el mouse */
-  }
-  
+}

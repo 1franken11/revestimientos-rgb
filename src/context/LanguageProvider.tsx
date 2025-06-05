@@ -12,8 +12,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const EN_Translations = EN as Translations;
   const POR_Translations = POR as Translations;
 
-  const [language, setLanguage] = useState<Language>("ES");
-  const [translations, setTranslations] = useState<Translations>(ES_Translations);
+  const [language, setLanguage] = useState<Language>("EN");
+  const [translations, setTranslations] = useState<Translations>(EN_Translations);
   
   useEffect(() => {
     switch (language) {

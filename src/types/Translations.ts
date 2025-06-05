@@ -92,5 +92,6 @@ materials: string[];
     errorMessage: string;
     cel: string;
     celPlaceholder:string;
+    quote:string;
   };
 }

@@ -57,7 +57,7 @@ const OpinionesCarousel: React.FC<Props> = ({
           )}
         </div>
       ) : (
-        <p className="text-center">Aún no hay comentarios.</p>
+        <p className="text-center">There are no comments yet. Visit our profile and leave us a comment!</p>
       )}
     </section>
     </>

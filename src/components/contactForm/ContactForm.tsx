@@ -109,7 +109,7 @@ const ContactForm: React.FC = () => {
         <form onSubmit={sendEmail}>
           <label htmlFor="contactType">Motivo del contacto</label>
           <select id="contactType" value={formData.contactType} onChange={handleChange} required>
-            <option value="budget">Solicitar cotización</option>
+            <option value="budget">{translations.ContactForm.quote}</option>
             <option value="other">Otro</option>
           </select>
 
