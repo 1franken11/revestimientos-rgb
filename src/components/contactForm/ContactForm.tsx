@@ -82,6 +82,9 @@ const ContactForm: React.FC = () => {
       alt: "Antes y después",
     }
   ];
+  const encodedMessage = encodeURIComponent(
+    "Hello, I would like more information about your services"
+  );
   return (
     <div className="contact-container">
       <div className="contact-info">
@@ -95,7 +98,7 @@ const ContactForm: React.FC = () => {
           <a href="https://www.facebook.com/profile.php?id=61562097362152" target="_blank" rel="noopener noreferrer">
             <FaFacebook className="icon facebook" size={30} />
           </a>
-          <a href="https://wa.me/+5413416991069" target="_blank" rel="noopener noreferrer">
+          <a href={`https://wa.me/19044225380?text=${encodedMessage}`} target="_blank" rel="noopener noreferrer">
             <FaWhatsapp className="icon whatsapp" size={30} />
           </a>
           <hr /><hr />
